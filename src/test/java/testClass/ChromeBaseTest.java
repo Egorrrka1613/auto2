@@ -65,6 +65,7 @@ public class ChromeBaseTest {
 
     public void toURL(String url) {
         Browser bro1 = new Browser(driver);
+
         bro1.goToURL(url);
         bro1.maximaze();
     }

@@ -22,12 +22,20 @@ public class AutorizationGmail extends ChromeBaseTest {
     @DisplayName("Создание, просмотр и удаление банковской гарантии")
     @Description("Создание, просмотр и удаление банковской гарантии")
 
-    public void startTest() {
+    public void startTest() throws InterruptedException {
         toURL("https://mail.yandex.ru/?noretpath=1");
         MailPageObject test1 = new MailPageObject(getDriver());
+        test1.clickComeGmail();
+        test1.setEnterLogin("testerawto");
+        test1.clickEnterLoginComplate();
+        test1.setEnterPassword("010203QAZ");
+        test1.clickEnterPasswordComplate();
 
-        /*test1.setEnterText("Cat");
-        test1.clickEngButton();
+
+        Thread.sleep(10000);
+/*
+test1.clickLoginField();
+
         test1.assertTranslateIsOk("кошка");
          */
 

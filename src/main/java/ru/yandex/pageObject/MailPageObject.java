@@ -27,6 +27,12 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//*[@id=\"root\"]/div/div/div[2]/div/div/div[3]/div[2]/div/div/form/div[2]/button[1]")
     private WebElement enterPasswordComplate;
 
+    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[5]/div/div[3]/div[2]/div[2]/div/div/a/span")
+    private WebElement writeLetter;
+
+    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]")
+    private WebElement windowNewLetter;
+
     /*
     @FindBy(xpath = ".//span[@class = 'tlid-translation translation']/span")
     private WebElement enterTranslate;
@@ -61,7 +67,7 @@ public class MailPageObject extends Base {
     }
 
     /**
-     * В этом методе вводим пароль
+     * В этом методе вводим пароль.
      */
 
     @Step ("В этом методе вводим пароль.")
@@ -69,9 +75,29 @@ public class MailPageObject extends Base {
         setText(enterPassword, text);
     }
 
+    /**
+     * В этом методе кликаем "Войти" после ввода пароля.
+     */
+
     @Step ("Кликаем \"Войти\", после ввода пароля.")
     public void clickEnterPasswordComplate() {
         click(enterPasswordComplate);
+    }
+
+    /**
+     * В этом методе нажимаем "Написать письмо".
+     */
+
+    @Step ("Нажимаем \"Написать\" в ЛК почты")
+    public void clickWriteLetter() { click(writeLetter); }
+
+    /**
+     * В этом методе проверяем наличие формы создания письма.
+     */
+
+    @Step ("Проверяем наличие формы создания нового письма")
+    public void assertWindowNewLetter(WebElement windowNewLetter){
+
     }
 
 

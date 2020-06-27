@@ -6,6 +6,9 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.yandex.pageObject.MailPageObject;
 import testClass.ChromeBaseTest;
 
@@ -30,6 +33,10 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.clickEnterLoginComplate();
         test1.setEnterPassword("010203QAZ");
         test1.clickEnterPasswordComplate();
+        test1.clickWriteLetter();
+        Thread.sleep(10000);
+        Assert.assertEquals(true, driver.findElement(By.xpath(".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]")));
+        //test1.assertWindowNewLetter(driver.findElement(By.xpath(".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]")));
 
 
         Thread.sleep(10000);
@@ -40,4 +47,6 @@ test1.clickLoginField();
          */
 
     }
+
+
 }

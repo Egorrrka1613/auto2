@@ -38,15 +38,11 @@ public class AutorizationGmail extends ChromeBaseTest {
         Assert.assertEquals(true, driver.findElement(By.xpath(".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]")));
         //test1.assertWindowNewLetter(driver.findElement(By.xpath(".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]")));
 
-
         Thread.sleep(10000);
-/*
-test1.clickLoginField();
+        /*
+        test1.clickLoginField();
 
         test1.assertTranslateIsOk("кошка");
          */
-
     }
-
-
 }

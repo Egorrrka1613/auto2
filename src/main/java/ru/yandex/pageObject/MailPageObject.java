@@ -100,11 +100,6 @@ public class MailPageObject extends Base {
 
     }
 
-
-
-
-
-
     /**
      * Определение корректности перевода слова.
      * @param transText

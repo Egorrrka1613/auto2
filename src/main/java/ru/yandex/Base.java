@@ -12,6 +12,7 @@ public class Base {
     private int waitTime = 3;
 
     public WebDriver getDriver() { return driver; }
+
     public Base (final WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;

@@ -1,6 +1,8 @@
 package ru.yandex.pageObject;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -96,8 +98,13 @@ public class MailPageObject extends Base {
      */
 
     @Step ("Проверяем наличие формы создания нового письма")
-    public void assertWindowNewLetter(WebElement windowNewLetter){
-
+    public boolean checkWindowNewLetter(){
+        try {
+            getDriver().findElement(By.xpath(String.valueOf(windowNewLetter)));
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+        return true;
     }
 
     /**

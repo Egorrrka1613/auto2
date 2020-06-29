@@ -34,9 +34,8 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.setEnterPassword("010203QAZ");
         test1.clickEnterPasswordComplate();
         test1.clickWriteLetter();
-        Thread.sleep(10000);
-        Assert.assertEquals(true, driver.findElement(By.xpath(".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]")));
-        //test1.assertWindowNewLetter(driver.findElement(By.xpath(".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]")));
+        test1.checkWindowNewLetter();
+
 
         Thread.sleep(10000);
         /*

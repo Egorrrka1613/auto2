@@ -35,6 +35,15 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]")
     private WebElement windowNewLetter;
 
+    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]/div/div[2]/div/div[1]/div[2]/div[1]/div/div[1]/div[1]/div/div[1]/div/div/div/div")
+    private WebElement addresser;
+
+    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]/div/div[2]/div/div[1]/div[2]/div[1]/div/div[1]/div[1]/div/div[3]/form/div/div/input")
+    private WebElement letterSubject;
+
+    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]/div/div[2]/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/div/button")
+    private WebElement uploadFile;
+
     /*
     @FindBy(xpath = ".//span[@class = 'tlid-translation translation']/span")
     private WebElement enterTranslate;
@@ -106,6 +115,37 @@ public class MailPageObject extends Base {
         }
         return true;
     }
+
+    /**
+     * В этом методе указываем поле для ввода адреса письма
+     */
+
+    @Step("Указываем поле для ввода адреса письма")
+    public void setAddresser (String text) {setText(addresser, text);}
+
+    /**
+     * В этом методе указываем тему письма
+     */
+
+    @Step("Указываем тему письма")
+    public void setLetterSubject (String text) {setText(letterSubject, text);}
+
+    /**
+     *  В этом методе загружаем файл к письму
+     */
+
+    @Step("Загружаем файл к письму")
+    public void setUploadFile() {
+        getDriver().findElement(By.xpath(String.valueOf(uploadFile))).sendKeys("C:\\dowonlad\\README.txt");
+        //fileInput.sendKeys();
+
+    }
+
+
+
+
+
+
 
     /**
      * Определение корректности перевода слова.

@@ -137,7 +137,7 @@ public class MailPageObject extends Base {
 
     @Step("Загружаем файл к письму")
     public void setUploadFile() {
-        getDriver().findElement(By.xpath(String.valueOf(uploadFile))).sendKeys("C:\\dowonlad\\README.txt");
+        getDriver().findElement(By.xpath(String.valueOf(uploadFile)));//.sendKeys("C:\\dowonlad\\README.txt");
     }
 
 

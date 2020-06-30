@@ -29,20 +29,36 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//*[@id=\"root\"]/div/div/div[2]/div/div/div[3]/div[2]/div/div/form/div[2]/button[1]")
     private WebElement enterPasswordComplate;
 
-    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[5]/div/div[3]/div[2]/div[2]/div/div/a/span")
+    @FindBy(xpath = ".//a[@title = 'Написать (w, c)']")
     private WebElement writeLetter;
 
-    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[2]")
+    @FindBy(xpath = ".//div[@class = 'ComposePopup-Content']")
     private WebElement windowNewLetter;
 
-    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[2]/div/div[2]/div/div[1]/div[2]/div[1]/div/div[1]/div[1]/div/div[1]/div/div/div/div")
+    @FindBy(xpath = ".//div[@class='MultipleAddressesDesktop ComposeRecipients-MultipleAddressField tst-field-to']//div[@class = 'compose-LabelRow-Content']/div[@class = 'MultipleAddressesDesktop-Field ComposeYabblesField']/div[@class = 'composeYabbles']")
     private WebElement addresser;
 
-    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[2]/div/div[2]/div/div[1]/div[2]/div[1]/div/div[1]/div[1]/div/div[3]/form/div/div/input")
+    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div//form/div/div/input")
     private WebElement letterSubject;
 
-    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[2]/div/div[2]/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/input")
+    @FindBy(xpath = ".//input[@class = 'ComposeAttachFileButton-FileInput' and @type='file']")
     private WebElement uploadFile;
+
+    /*
+    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]/div/div[2]/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/div")
+    private WebElement uploadFile1;
+
+    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]/div/div[2]/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/div/button")
+    private WebElement uploadFile2;
+
+    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]/div/div[2]/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/div")
+    private WebElement uploadFile3;
+
+    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]/div/div[2]/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/input")
+    private WebElement uploadFile4;
+
+     */
+
 
 
     /*
@@ -138,6 +154,7 @@ public class MailPageObject extends Base {
     @Step("Загружаем файл к письму")
     public void setUploadFile() {
         getDriver().findElement(By.xpath(String.valueOf(uploadFile)));//.sendKeys("C:\\dowonlad\\README.txt");
+        System.out.println("Нашел файл");
     }
 
 

@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Base {
     private WebDriver driver;
-    private int waitTime = 3;
+    private int waitTime = 7;
 
     public WebDriver getDriver() { return driver; }
 

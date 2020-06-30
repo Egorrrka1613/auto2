@@ -37,10 +37,10 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.checkWindowNewLetter();
         test1.setAddresser("reutov622@gmail.com");
         test1.setLetterSubject("Тестовое задание");
-        System.out.println("Дошел до загрузки файла");
-/*        test1.setUploadFile();
 
-         */
+        test1.setUploadFile();
+
+
 
 
 

@@ -29,7 +29,7 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//*[@id=\"root\"]/div/div/div[2]/div/div/div[3]/div[2]/div/div/form/div[2]/button[1]")
     private WebElement enterPasswordComplate;
 
-    @FindBy(xpath = ".//a[@title = 'Написать (w, c)']")
+    @FindBy(xpath = "//a[@class = 'mail-ComposeButton js-main-action-compose']")
     private WebElement writeLetter;
 
     @FindBy(xpath = ".//div[@class = 'ComposePopup-Content']")
@@ -44,23 +44,7 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//input[@class = 'ComposeAttachFileButton-FileInput' and @type='file']")
     private WebElement uploadFile;
 
-    /*
-    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]/div/div[2]/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/div")
-    private WebElement uploadFile1;
-
-    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]/div/div[2]/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/div/button")
-    private WebElement uploadFile2;
-
-    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]/div/div[2]/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/div")
-    private WebElement uploadFile3;
-
-    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div/div[1]/div/div[2]/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/input")
-    private WebElement uploadFile4;
-
-     */
-
-
-
+    
     /*
     @FindBy(xpath = ".//span[@class = 'tlid-translation translation']/span")
     private WebElement enterTranslate;
@@ -148,13 +132,29 @@ public class MailPageObject extends Base {
     public void setLetterSubject (String text) {setText(letterSubject, text);}
 
     /**
+     * В этом методе кликаем на "прикрепить"
+     */
+    /*
+    @Step ("Кликаем Прикрепить")
+    public void clickAttach() { click(attach); }
+
+     */
+
+    /**
      *  В этом методе загружаем файл к письму
      */
 
     @Step("Загружаем файл к письму")
     public void setUploadFile() {
-        getDriver().findElement(By.xpath(String.valueOf(uploadFile)));//.sendKeys("C:\\dowonlad\\README.txt");
-        System.out.println("Нашел файл");
+        /*getDriver().findElement(By.xpath(String.valueOf(uploadFile))).sendKeys("C:\\dowonlad\\README.txt");
+        System.out.println("Нашел кнопку");
+
+        WebElement fileInput = getDriver().findElement(By.xpath(String.valueOf(uploadFile)));
+        fileInput.sendKeys("C:\\dowonlad\\README.txt");
+        */
+        By attach2 = By.xpath(".//input[@class = 'ComposeAttachFileButton-FileInput' and @type='file']");
+        String uploadFile2 = "C:\\dowonlad\\README.txt";
+        getDriver().findElement(attach2).sendKeys(uploadFile2);
     }
 
 

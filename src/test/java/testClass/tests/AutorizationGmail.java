@@ -35,22 +35,10 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.clickEnterPasswordComplate();
         test1.clickWriteLetter();
         test1.checkWindowNewLetter();
-        test1.setAddresser("reutov622@gmail.com");
+        test1.setAddresser("testerawto@yandex.ru");
         test1.setLetterSubject("Тестовое задание");
-
         test1.setUploadFile();
 
-
-
-
-
-
-
-
-
-
-
-        Thread.sleep(10000);
         /*
         test1.clickLoginField();
 

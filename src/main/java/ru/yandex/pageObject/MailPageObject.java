@@ -44,7 +44,7 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//input[@class = 'ComposeAttachFileButton-FileInput' and @type='file']")
     private WebElement uploadFile;
 
-    
+
     /*
     @FindBy(xpath = ".//span[@class = 'tlid-translation translation']/span")
     private WebElement enterTranslate;
@@ -146,15 +146,15 @@ public class MailPageObject extends Base {
 
     @Step("Загружаем файл к письму")
     public void setUploadFile() {
-        /*getDriver().findElement(By.xpath(String.valueOf(uploadFile))).sendKeys("C:\\dowonlad\\README.txt");
-        System.out.println("Нашел кнопку");
-
+        //uploadFile.sendKeys("C:\\dowonlad\\README.txt");
+        setText(uploadFile,"C:\\dowonlad\\README.txt");
+/*
         WebElement fileInput = getDriver().findElement(By.xpath(String.valueOf(uploadFile)));
         fileInput.sendKeys("C:\\dowonlad\\README.txt");
-        */
+
         By attach2 = By.xpath(".//input[@class = 'ComposeAttachFileButton-FileInput' and @type='file']");
         String uploadFile2 = "C:\\dowonlad\\README.txt";
-        getDriver().findElement(attach2).sendKeys(uploadFile2);
+        getDriver().findElement(attach2).sendKeys(uploadFile2);*/
     }
 
 

@@ -11,7 +11,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.yandex.pageObject.MailPageObject;
 import testClass.ChromeBaseTest;
-import static ru.yandex.randomStringGenerator.generateString;
+
+import static ru.yandex.randomStringGenerator.*;
+
 
 import static org.junit.Assert.*;
 import org.junit.Assert;
@@ -38,15 +40,19 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.checkWindowNewLetter();
         System.out.println(test1.checkWindowNewLetter());
         test1.setAddresser("testerawto@yandex.ru");
-        test1.setLetterSubject("Тестовое задание");
-        test1.writeTextLetter(generateString());
+        test1.setLetterSubject(letterSubjectValue);
+        test1.writeTextLetter(textLetterChoice());
         test1.setUploadFile();
         test1.clickSendLetter();
         test1.clickReturnToInBox();
+        test1.clickRefreshGmail();
+        System.out.println(test1.checkLetterSubject());
 
 
-        Thread.sleep(20000);
-/*
+
+
+        Thread.sleep(10000);
+        /*
         test1.clickLoginField();
         test1.assertTranslateIsOk("кошка");
          */

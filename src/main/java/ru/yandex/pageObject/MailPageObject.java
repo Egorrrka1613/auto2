@@ -7,6 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.Base;
+import ru.yandex.randomStringGenerator;
+
+import static ru.yandex.randomStringGenerator.*;
 
 public class MailPageObject extends Base {
 
@@ -44,14 +47,20 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//input[@class = 'ComposeAttachFileButton-FileInput' and @type='file']")
     private WebElement uploadFile;
 
-    @FindBy(xpath = "//button[@class = 'control button2 button2_view_default button2_tone_default button2_size_l button2_theme_action button2_pin_circle-circle ComposeControlPanelButton-Button ComposeControlPanelButton-Button_action']")
+    @FindBy(xpath = ".//button[@class = 'control button2 button2_view_default button2_tone_default button2_size_l button2_theme_action button2_pin_circle-circle ComposeControlPanelButton-Button ComposeControlPanelButton-Button_action']")
     private WebElement sendLetter;
 
-    @FindBy(xpath = "//*[@id=\"cke_1_contents\"]/div")
+    @FindBy(xpath = ".//*[@id=\"cke_1_contents\"]/div")
     private WebElement textLetter;
 
-    @FindBy(xpath = "//a[@class = 'control link link_theme_normal ComposeDoneScreen-Link' and @href = '#inbox']")
+    @FindBy(xpath = ".//a[@class = 'control link link_theme_normal ComposeDoneScreen-Link' and @href = '#inbox']")
     private WebElement returnToInBox;
+
+    @FindBy(xpath = ".//span [@class = 'mail-ComposeButton-Refresh js-main-action-refresh ns-action']")
+    private WebElement refreshMail;
+
+    @FindBy(xpath = ".//span [@class= 'mail-MessageSnippet-Item mail-MessageSnippet-Item_subject']/span")
+    private WebElement lastLetterSubjectInBox;
 
     /*
     @FindBy(xpath = ".//span[@class = 'tlid-translation translation']/span")
@@ -168,12 +177,47 @@ public class MailPageObject extends Base {
     /**
      * В этом методе нажимаем "Вернуться во входящие"
      */
+
     @Step("Нажимаем \"Вернуться во входящие\"")
     public void clickReturnToInBox() {
         click(returnToInBox);
     }
 
+    /**
+     * В этом методе обновляем почтовый ящик
+     */
 
+    @Step("Нажимаем \"Проверить, есть ли новые письма \"")
+    public void clickRefreshGmail() {click(refreshMail);}
+
+    /**
+     *  В этом методе проверяем соответствие темы письма
+     */
+
+    @Step("Проверяем тему письма")
+    public String checkLetterSubject() {
+        String result;
+        System.out.println(getText(lastLetterSubjectInBox) + " тема принятого письма");
+        System.out.println(letterSubjectValue + " сгенерированное значение");
+        //System.out.println(uuid + "сгенерированная тема");
+
+        /*
+        try {
+            getText(lastLetterSubjectInBox);
+        }
+        catch (NoSuchElementException e) {
+            return "Тема письма не соответствует";
+        }
+        return "Тема письма соответствует";
+        */
+
+        if (getText(lastLetterSubjectInBox).equals(letterSubjectValue)) {
+            result = "Тема письма соответствует";
+        }
+        else
+            result = "Тема письма не соответствует";
+        return result;
+    }
 
     /**
      * Определение корректности перевода слова.

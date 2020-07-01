@@ -35,7 +35,7 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//div[@class = 'ComposePopup-Content']")
     private WebElement windowNewLetter;
 
-    @FindBy(xpath = ".//div[@class='MultipleAddressesDesktop ComposeRecipients-MultipleAddressField tst-field-to']//div[@class = 'compose-LabelRow-Content']/div[@class = 'MultipleAddressesDesktop-Field ComposeYabblesField']/div[@class = 'composeYabbles']")
+    @FindBy(xpath = ".//div[@class='MultipleAddressesDesktop ComposeRecipients-MultipleAddressField tst-field-to']//div[@class = 'composeYabbles']")
     private WebElement addresser;
 
     @FindBy(xpath = ".//input[@name = 'subject']")
@@ -44,6 +44,14 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//input[@class = 'ComposeAttachFileButton-FileInput' and @type='file']")
     private WebElement uploadFile;
 
+    @FindBy(xpath = "//button[@class = 'control button2 button2_view_default button2_tone_default button2_size_l button2_theme_action button2_pin_circle-circle ComposeControlPanelButton-Button ComposeControlPanelButton-Button_action']")
+    private WebElement sendLetter;
+
+    @FindBy(xpath = "//*[@id=\"cke_1_contents\"]/div")
+    private WebElement textLetter;
+
+    @FindBy(xpath = "//a[@class = 'control link link_theme_normal ComposeDoneScreen-Link' and @href = '#inbox']")
+    private WebElement returnToInBox;
 
     /*
     @FindBy(xpath = ".//span[@class = 'tlid-translation translation']/span")
@@ -108,13 +116,13 @@ public class MailPageObject extends Base {
      */
 
     @Step ("Проверяем наличие формы создания нового письма")
-    public boolean checkWindowNewLetter(){
+    public String checkWindowNewLetter(){
         try {
-            getDriver().findElement(By.xpath(String.valueOf(windowNewLetter)));
+            getText(uploadFile);
         } catch (NoSuchElementException e) {
-            return false;
+            return "Форма не найдена";
         }
-        return true;
+        return "Форма найдена";
     }
 
     /**
@@ -132,13 +140,12 @@ public class MailPageObject extends Base {
     public void setLetterSubject (String text) {setText(letterSubject, text);}
 
     /**
-     * В этом методе кликаем на "прикрепить"
+     * В этом методе пишем текст письма
      */
-    /*
-    @Step ("Кликаем Прикрепить")
-    public void clickAttach() { click(attach); }
 
-     */
+    @Step("Пишем текст письма")
+    public void writeTextLetter (String text) {setText(textLetter, text);}
+
 
     /**
      *  В этом методе загружаем файл к письму
@@ -146,18 +153,25 @@ public class MailPageObject extends Base {
 
     @Step("Загружаем файл к письму")
     public void setUploadFile() {
-        //uploadFile.sendKeys("C:\\dowonlad\\README.txt");
         setText(uploadFile,"C:\\dowonlad\\README.txt");
-/*
-        WebElement fileInput = getDriver().findElement(By.xpath(String.valueOf(uploadFile)));
-        fileInput.sendKeys("C:\\dowonlad\\README.txt");
-
-        By attach2 = By.xpath(".//input[@class = 'ComposeAttachFileButton-FileInput' and @type='file']");
-        String uploadFile2 = "C:\\dowonlad\\README.txt";
-        getDriver().findElement(attach2).sendKeys(uploadFile2);*/
     }
 
+    /**
+     * В этом методе нажимаем "Отправить"
+     */
 
+    @Step("Нажимаем \"Отправить\"")
+    public void clickSendLetter() {
+        click(sendLetter);
+    }
+
+    /**
+     * В этом методе нажимаем "Вернуться во входящие"
+     */
+    @Step("Нажимаем \"Вернуться во входящие\"")
+    public void clickReturnToInBox() {
+        click(returnToInBox);
+    }
 
 
 

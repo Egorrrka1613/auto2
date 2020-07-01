@@ -14,19 +14,19 @@ public class MailPageObject extends Base {
         super(driver);
     }
 
-    @FindBy(xpath = ".//*[@id=\"index-page-container\"]/div/div[2]/div/div/div[4]/a[2]")
+    @FindBy(xpath = ".//a[@class = 'button2 button2_size_mail-big button2_theme_mail-white button2_type_link HeadBanner-Button HeadBanner-Button-Enter with-shadow']")
     private WebElement comeGmail;
 
-    @FindBy(xpath = ".//*[@id=\"passp-field-login\"]")
+    @FindBy(xpath = ".//*[@name=\"login\"]")
     private WebElement enterLogin;
 
-    @FindBy(xpath = ".//*[@id=\"root\"]/div/div/div[2]/div/div/div[3]/div[2]/div/div/div[1]/form/div[3]/button[1]")
+    @FindBy(xpath = ".//div[@class = 'passp-button passp-sign-in-button']/button[@type = 'submit']")
     private WebElement enterLoginComplate;
 
-    @FindBy(xpath = ".//*[@id=\"passp-field-passwd\"]")
+    @FindBy(xpath = ".//*[@name=\"passwd\"]")
     private WebElement enterPassword;
 
-    @FindBy(xpath = ".//*[@id=\"root\"]/div/div/div[2]/div/div/div[3]/div[2]/div/div/form/div[2]/button[1]")
+    @FindBy(xpath = ".//div[@class = 'passp-button passp-sign-in-button']/button[@type = 'submit']")
     private WebElement enterPasswordComplate;
 
     @FindBy(xpath = "//a[@class = 'mail-ComposeButton js-main-action-compose']")
@@ -38,7 +38,7 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//div[@class='MultipleAddressesDesktop ComposeRecipients-MultipleAddressField tst-field-to']//div[@class = 'compose-LabelRow-Content']/div[@class = 'MultipleAddressesDesktop-Field ComposeYabblesField']/div[@class = 'composeYabbles']")
     private WebElement addresser;
 
-    @FindBy(xpath = ".//*[@id=\"nb-1\"]/body/div[2]/div[9]/div//form/div/div/input")
+    @FindBy(xpath = ".//input[@name = 'subject']")
     private WebElement letterSubject;
 
     @FindBy(xpath = ".//input[@class = 'ComposeAttachFileButton-FileInput' and @type='file']")

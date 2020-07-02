@@ -12,8 +12,9 @@ import java.util.UUID;
   Метод, генерирующий значение темы письма и переменная, в которую это значение передается
    */
   public static String letterSubject() {
-    System.out.println("Генерация значения");
+
     String uuid = UUID.randomUUID().toString();
+    System.out.println(uuid + "Значение, сгенерированное в методе");
     return uuid;
   }
   public static String letterSubjectValue = letterSubject();
@@ -21,6 +22,7 @@ import java.util.UUID;
   /*
   Метод, случайно выбирающий значение, которое будет передано в текст письма
    */
+
   public static String textLetterChoice() {
     List<String> textLetter = Arrays.asList(
             "Интервьюер интервента интервьюировал.",

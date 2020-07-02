@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import ru.yandex.Base;
 import ru.yandex.randomStringGenerator;
 
-import static ru.yandex.randomStringGenerator.*;
+import static ru.yandex.randomStringGenerator.letterSubjectValue;
 
 public class MailPageObject extends Base {
 
@@ -59,8 +59,13 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//span [@class = 'mail-ComposeButton-Refresh js-main-action-refresh ns-action']")
     private WebElement refreshMail;
 
+
     @FindBy(xpath = ".//span [@class= 'mail-MessageSnippet-Item mail-MessageSnippet-Item_subject']/span")
-    private WebElement lastLetterSubjectInBox;
+    private WebElement LetterSubjectInBox;
+
+    //@FindBy(xpath = ".//span [@title = '" + sad + "']")
+    //private WebElement lastLetterSubjectInBox;
+
 
     /*
     @FindBy(xpath = ".//span[@class = 'tlid-translation translation']/span")
@@ -197,26 +202,22 @@ public class MailPageObject extends Base {
     @Step("Проверяем тему письма")
     public String checkLetterSubject() {
         String result;
-        System.out.println(getText(lastLetterSubjectInBox) + " тема принятого письма");
+        System.out.println(getText(LetterSubjectInBox) + " тема письма в почте");
         System.out.println(letterSubjectValue + " сгенерированное значение");
-        //System.out.println(uuid + "сгенерированная тема");
 
-        /*
-        try {
-            getText(lastLetterSubjectInBox);
-        }
-        catch (NoSuchElementException e) {
-            return "Тема письма не соответствует";
-        }
-        return "Тема письма соответствует";
-        */
-
-        if (getText(lastLetterSubjectInBox).equals(letterSubjectValue)) {
+        if (getText(LetterSubjectInBox).equals(letterSubjectValue)) {
             result = "Тема письма соответствует";
         }
         else
             result = "Тема письма не соответствует";
+
         return result;
+    }
+
+    @Step("Кликаем")
+    public void clickElement(String name) {
+        String xphas = ".//span[@title = '" + name + "']";
+        click(xphas);
     }
 
     /**

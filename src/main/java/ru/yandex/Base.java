@@ -1,5 +1,6 @@
 package ru.yandex;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -43,6 +44,23 @@ public class Base {
             ex.printStackTrace();
         }
         return false;
+    }
+
+    public boolean waitVisibilityElement (String xpath) {
+        WebDriverWait we = new WebDriverWait(driver, waitTime);
+        try {
+            we.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(xpath))));
+            return true;
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    public void click(String xpath) {
+        waitVisibilityElement(xpath);
+        getDriver().findElement(By.xpath(xpath)).click();
     }
 
     /**

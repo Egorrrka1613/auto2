@@ -7,6 +7,10 @@ import java.util.UUID;
   public class randomStringGenerator {
   public static void main(String[] args) {
   }
+
+  /*
+  Метод, генерирующий значение темы письма и переменная, в которую это значение передается
+   */
   public static String letterSubject() {
     System.out.println("Генерация значения");
     String uuid = UUID.randomUUID().toString();

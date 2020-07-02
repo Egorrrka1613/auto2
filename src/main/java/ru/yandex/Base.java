@@ -10,7 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Base {
     private WebDriver driver;
-    private int waitTime = 7;
+    private int waitTime = 5;
+    private int waitTimeToSubject = 5000;
 
     public WebDriver getDriver() { return driver; }
 
@@ -46,8 +47,13 @@ public class Base {
         return false;
     }
 
+    /**
+     * Переопределил метод waitVisibilityElement
+     * @param xpath
+     * @return
+     */
     public boolean waitVisibilityElement (String xpath) {
-        WebDriverWait we = new WebDriverWait(driver, waitTime);
+        WebDriverWait we = new WebDriverWait(driver, waitTimeToSubject);
         try {
             we.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(xpath))));
             return true;
@@ -58,6 +64,10 @@ public class Base {
         return false;
     }
 
+    /**
+     * Переопределил метод click
+     * @param xpath
+     */
     public void click(String xpath) {
         waitVisibilityElement(xpath);
         getDriver().findElement(By.xpath(xpath)).click();

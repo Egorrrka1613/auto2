@@ -14,7 +14,7 @@ import java.util.UUID;
   public static String letterSubject() {
 
     String uuid = UUID.randomUUID().toString();
-    System.out.println(uuid + "Значение, сгенерированное в методе");
+    System.out.println(uuid + " Значение, сгенерированное в методе");
     return uuid;
   }
   public static String letterSubjectValue = letterSubject();

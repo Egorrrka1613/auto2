@@ -214,10 +214,10 @@ public class MailPageObject extends Base {
         return result;
     }
 
-    @Step("Кликаем")
+    @Step("Проверяем тему письма")
     public void clickElement(String name) {
-        String xphas = ".//span[@title = '" + name + "']";
-        click(xphas);
+        String xpath = ".//span[@title = '" + name + "']";
+        click(xpath);
     }
 
     /**

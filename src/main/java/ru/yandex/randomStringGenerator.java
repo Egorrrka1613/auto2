@@ -11,10 +11,11 @@ import java.util.UUID;
   /*
   Метод, генерирующий значение темы письма и переменная, в которую это значение передается
    */
+
   public static String letterSubject() {
 
     String uuid = UUID.randomUUID().toString();
-    System.out.println(uuid + " Значение, сгенерированное в методе");
+    System.out.println(uuid + " Тема нового письма");
     return uuid;
   }
   public static String letterSubjectValue = letterSubject();
@@ -29,7 +30,8 @@ import java.util.UUID;
             "Жили-были три китайца: Як, Як-цедрак, Як-цедрак-цедрак-цедрони.",
             "Карл у Клары украл рекламу, а Клара у Карла украла бюджет.",
             "Сачок зацепился за сучок.",
-            "Тридцать три корабля лавировали-лавировали, да не вылавировали.");
+            "Тридцать три корабля лавировали-лавировали, да не вылавировали.",
+            "Три сороки-тараторки тараторили на горке.");
     Random rand = new Random();
     String i = textLetter.get(rand.nextInt(textLetter.size()));
     return i;

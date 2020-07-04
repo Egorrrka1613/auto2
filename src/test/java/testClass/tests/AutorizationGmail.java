@@ -48,9 +48,10 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.clickSendLetter();
         test1.clickReturnToInBox();
         test1.clickRefreshGmail();
-        Thread.sleep(10000);
         //System.out.println(test1.checkLetterSubject());
-        test1.clickElement(letterSubjectValue);
+        test1.findLetterSubject(letterSubjectValue);
+
+        Thread.sleep(10000);
 
 
 

@@ -25,11 +25,6 @@ public class Base {
         element.click();
     }
 
-    public void setText(WebElement element, String text) {
-        waitVisibilityElement(element);
-        element.sendKeys(text);
-    }
-
     /**
      * Метод ожидания видимости элемента
      * @param element
@@ -82,5 +77,10 @@ public class Base {
     public String getText(WebElement element) {
         waitVisibilityElement(element);
         return element.getText();
+    }
+
+    public void setText(WebElement element, String text) {
+        waitVisibilityElement(element);
+        element.sendKeys(text);
     }
 }

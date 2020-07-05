@@ -64,7 +64,6 @@ public class MailPageObject extends Base {
     private WebElement LetterSubjectInBox;
 
 
-
     /*
     @FindBy(xpath = ".//span[@class = 'tlid-translation translation']/span")
     private WebElement enterTranslate;
@@ -194,28 +193,19 @@ public class MailPageObject extends Base {
     public void clickRefreshGmail() {click(refreshMail);}
 
     /**
-     *  В этом методе проверяем соответствие темы письма
+     *  В этом методе кликаем по письму с указанной темой
      */
 
-    @Step("Проверяем тему письма")
-    public String checkLetterSubject() {
-        String result;
-        System.out.println(getText(LetterSubjectInBox) + " тема письма в почте");
-        System.out.println(letterSubjectValue + " сгенерированное значение");
-
-        if (getText(LetterSubjectInBox).equals(letterSubjectValue)) {
-            result = "Тема письма соответствует";
+    @Step("Проверяем наличие письма, с указанной темой")
+    public void findLetterSubject(String subjectLetter) {
+        try {
+            String xpath = ".//span[@title = '" + subjectLetter + "']";
+            click(xpath);
         }
-        else
-            result = "Тема письма не соответствует";
-
-        return result;
-    }
-
-    @Step("Проверяем тему письма")
-    public void clickElement(String name) {
-        String xpath = ".//span[@title = '" + name + "']";
-        click(xpath);
+        catch (NoSuchElementException e) {
+            System.out.println("Письмо с указанной темой отсутствует");
+        }
+        System.out.println("Письмо с указанной темой присутствует");
     }
 
     /**

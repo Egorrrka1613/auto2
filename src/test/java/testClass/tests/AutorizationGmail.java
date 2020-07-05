@@ -41,7 +41,6 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.checkWindowNewLetter();
         System.out.println(test1.checkWindowNewLetter());
         test1.setAddresser("testerawto@yandex.ru");
-        //test1.setLetterSubject("1c9e8db9-ad4c-45bd-86b6-a67493as");
         test1.setLetterSubject(letterSubjectValue);
         test1.writeTextLetter(textLetterChoice());
         test1.setUploadFile();
@@ -49,8 +48,7 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.clickReturnToInBox();
         test1.clickRefreshGmail();
         System.out.println("Тест прошел");
-        //System.out.println(test1.checkLetterSubject());
-        //test1.findLetterSubject(letterSubjectValue);
+        test1.findLetterSubject(letterSubjectValue);
 
 
 

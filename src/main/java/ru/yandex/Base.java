@@ -11,7 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Base {
     private WebDriver driver;
     private int waitTime = 5;
+    private int waitTimeTest = 10;
     private int waitTimeToSubject = 5000;
+    private int waitTimeToSubjectTest = 20000;
 
     public WebDriver getDriver() { return driver; }
 
@@ -48,7 +50,7 @@ public class Base {
      * @return
      */
     public boolean waitVisibilityElement (String xpath) {
-        WebDriverWait we = new WebDriverWait(driver, waitTimeToSubject);
+        WebDriverWait we = new WebDriverWait(driver, waitTimeTest, waitTimeToSubjectTest);
         try {
             we.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(xpath))));
             return true;

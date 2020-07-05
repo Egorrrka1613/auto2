@@ -216,10 +216,14 @@ public class MailPageObject extends Base {
         return result;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> parent of a9ea252... Выполнил 6 шаг, надо переписать метод findLetterSubject, не на клик а на сравнение значений
 
+=======
+
+>>>>>>> parent of a9ea252... Выполнил 6 шаг, надо переписать метод findLetterSubject, не на клик а на сравнение значений
     @Step("Проверяем тему письма")
     public void clickElement(String name) {
         String xpath = ".//span[@title = '" + name + "']";
@@ -231,9 +235,12 @@ public class MailPageObject extends Base {
     public void findLetterSubject (String subjectLetter) {
         String elementSubject = ".//span[@title = '" + subjectLetter + "']";
 
+<<<<<<< HEAD
         if ()
     }
 
+=======
+>>>>>>> parent of a9ea252... Выполнил 6 шаг, надо переписать метод findLetterSubject, не на клик а на сравнение значений
     /**
      * Определение корректности перевода слова.
      * @param transText

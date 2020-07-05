@@ -63,6 +63,8 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//span [@class= 'mail-MessageSnippet-Item mail-MessageSnippet-Item_subject']/span")
     private WebElement LetterSubjectInBox;
 
+    @FindBy(xpath = ".//span[@title = '" + subjectLetter + "']")
+
     //@FindBy(xpath = ".//span [@title = '" + sad + "']")
     //private WebElement lastLetterSubjectInBox;
 
@@ -214,7 +216,7 @@ public class MailPageObject extends Base {
 
         return result;
     }
-     */
+
 
     @Step("Проверяем наличие письма, с указанной темой")
     public void findLetterSubject(String subjectLetter) {
@@ -226,6 +228,14 @@ public class MailPageObject extends Base {
             System.out.println("Письмо с указанной темой отсутствует");
         }
         System.out.println("Письмо с указанной темой присутствует");
+    }
+    */
+
+    @Step("Попытка создать СРАВНЕНИЕ значений темы письма в ящике и сгенерированного значения")
+    public void findLetterSubject (String subjectLetter) {
+        String elementSubject = ".//span[@title = '" + subjectLetter + "']";
+
+        if ()
     }
 
 

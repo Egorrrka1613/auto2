@@ -20,6 +20,8 @@ import java.util.UUID;
   }
   public static String letterSubjectValue = letterSubject();
 
+
+
   /*
   Метод, случайно выбирающий значение, которое будет передано в текст письма
    */

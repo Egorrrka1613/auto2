@@ -10,9 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Base {
     private WebDriver driver;
-    private int waitTime = 30;
-    private int waitTimeToSubject = 30;
-    private int waitTimeTimeout = 500;
+    private int waitTime = 5;
+    private int waitTimeToSubject = 5000;
 
     public WebDriver getDriver() { return driver; }
 
@@ -21,14 +20,14 @@ public class Base {
         this.driver = driver;
     }
 
-    public void setText(WebElement element, String text) {
-        waitVisibilityElement(element);
-        element.sendKeys(text);
-    }
-
     public void click(WebElement element) {
         waitVisibilityElement(element);
         element.click();
+    }
+
+    public void setText(WebElement element, String text) {
+        waitVisibilityElement(element);
+        element.sendKeys(text);
     }
 
     /**
@@ -36,9 +35,8 @@ public class Base {
      * @param element
      * @return
      */
-
     public boolean waitVisibilityElement (WebElement element) {
-        WebDriverWait we = new WebDriverWait(driver, waitTime, waitTimeTimeout);
+        WebDriverWait we = new WebDriverWait(driver, waitTime);
         try {
             we.until(ExpectedConditions.visibilityOf(element));
             return true;
@@ -50,28 +48,14 @@ public class Base {
     }
 
     /**
-     * Переопределил метод click
-     * Метод кликает по веб-элементу, переданному в хпасе
-     * @param xpath
-     */
-
-    public void click(String xpath) {
-        waitVisibilityElement(xpath);
-        getDriver().findElement(By.xpath(xpath)).click();
-    }
-
-    /**
      * Переопределил метод waitVisibilityElement
      * @param xpath
      * @return
      */
-
     public boolean waitVisibilityElement (String xpath) {
-        WebDriverWait we = new WebDriverWait(driver, waitTimeToSubject, waitTimeTimeout);
-
+        WebDriverWait we = new WebDriverWait(driver, waitTimeToSubject);
         try {
-            //we.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(xpath))));
-            we.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath))); //visibilityOf(driver.findElement(By.xpath(xpath))));
+            we.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(xpath))));
             return true;
         }
         catch (Exception ex) {
@@ -81,12 +65,21 @@ public class Base {
     }
 
     /**
+     * Переопределил метод click
+     * @param xpath
+     */
+    public void click(String xpath) {
+        waitVisibilityElement(xpath);
+        getDriver().findElement(By.xpath(xpath)).click();
+    }
+
+    /**
      * Метод забирвет текст из элемента.
      * @param element
      * @return
      */
 
-    public String getText (WebElement element) {
+    public String getText(WebElement element) {
         waitVisibilityElement(element);
         return element.getText();
     }

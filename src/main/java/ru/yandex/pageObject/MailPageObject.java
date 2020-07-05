@@ -63,10 +63,6 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//span [@class= 'mail-MessageSnippet-Item mail-MessageSnippet-Item_subject']/span")
     private WebElement LetterSubjectInBox;
 
-    @FindBy(xpath = ".//span[@title = '" + subjectLetter + "']")
-
-    //@FindBy(xpath = ".//span [@title = '" + sad + "']")
-    //private WebElement lastLetterSubjectInBox;
 
 
     /*
@@ -136,9 +132,9 @@ public class MailPageObject extends Base {
         try {
             getText(uploadFile);
         } catch (NoSuchElementException e) {
-            return "Форма не найдена";
+            return "Форма создания письма не найдена";
         }
-        return "Форма найдена";
+        return "Форма создания письма открылась";
     }
 
     /**
@@ -197,10 +193,11 @@ public class MailPageObject extends Base {
     @Step("Нажимаем \"Проверить, есть ли новые письма \"")
     public void clickRefreshGmail() {click(refreshMail);}
 
+
     /**
      *  В этом методе проверяем соответствие темы письма
      */
-
+    /*
     @Step("Проверяем тему письма")
     public String checkLetterSubject() {
         String result;
@@ -215,32 +212,21 @@ public class MailPageObject extends Base {
 
         return result;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
+     */
 
-=======
->>>>>>> parent of a9ea252... Выполнил 6 шаг, надо переписать метод findLetterSubject, не на клик а на сравнение значений
-
-=======
-
->>>>>>> parent of a9ea252... Выполнил 6 шаг, надо переписать метод findLetterSubject, не на клик а на сравнение значений
-    @Step("Проверяем тему письма")
-    public void clickElement(String name) {
-        String xpath = ".//span[@title = '" + name + "']";
-        click(xpath);
-    }
-    */
-
-    @Step("Попытка создать СРАВНЕНИЕ значений темы письма в ящике и сгенерированного значения")
-    public void findLetterSubject (String subjectLetter) {
-        String elementSubject = ".//span[@title = '" + subjectLetter + "']";
-
-<<<<<<< HEAD
-        if ()
+    @Step("Проверяем наличие письма, с указанной темой")
+    public void findLetterSubject(String subjectLetter) {
+        try {
+            String xpath = ".//span[@title = '" + subjectLetter + "']";
+            click(xpath);
+        }
+        catch (NoSuchElementException e) {
+            System.out.println("Письмо с указанной темой отсутствует");
+        }
+        System.out.println("Письмо с указанной темой присутствует");
     }
 
-=======
->>>>>>> parent of a9ea252... Выполнил 6 шаг, надо переписать метод findLetterSubject, не на клик а на сравнение значений
+
     /**
      * Определение корректности перевода слова.
      * @param transText

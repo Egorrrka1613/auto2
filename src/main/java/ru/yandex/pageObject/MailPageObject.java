@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.Base;
 import ru.yandex.randomStringGenerator;
@@ -61,11 +62,15 @@ public class MailPageObject extends Base {
 
 
     @FindBy(xpath = ".//span [@class= 'mail-MessageSnippet-Item mail-MessageSnippet-Item_subject']/span")
-    private WebElement LetterSubjectInBox;
+    private WebElement letterSubjectInBox;
+
+    @FindBy(xpath = ".//div[@class = 'ns-view-container-desc mail-MessagesList js-messages-list']/div[1]/div/div[2]/div[1]/div[1]")
+    private WebElement receiveLetter;
+
 
 
     /*
-    @FindBy(xpath = ".//span[@class = 'tlid-translation translation']/span")
+    @FindBy(xpath = ".//span[@class = 'mail-MessageSnippet-Item mail-MessageSnippet-Item_sender js-message-snippet-sender']")
     private WebElement enterTranslate;
      */
 
@@ -201,12 +206,22 @@ public class MailPageObject extends Base {
         try {
             String xpath = ".//span[@title = '" + subjectLetter + "']";
             click(xpath);
+            //c8232d36-d6da-4676-94bc-f27a3b27ccbb .//span[@title = 'c8232d36-d6da-4676-94bc-f27a3b27ccbb']
         }
-        catch (NoSuchElementException e) {
+        catch (UnreachableBrowserException e) {
             System.out.println("Письмо с указанной темой отсутствует");
         }
         System.out.println("Письмо с указанной темой присутствует");
     }
+
+    /**
+     * В этом методе открываем принятое письмо
+     */
+
+    @Step ("Открываем принятое письмо")
+    public void clickReceiveLetter() {click(receiveLetter);}
+
+
 
     /**
      * Определение корректности перевода слова.

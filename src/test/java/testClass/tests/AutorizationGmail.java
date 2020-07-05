@@ -44,11 +44,15 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.setLetterSubject(letterSubjectValue);
         test1.writeTextLetter(textLetterChoice());
         test1.setUploadFile();
+        Thread.sleep(3000);
         test1.clickSendLetter();
         test1.clickReturnToInBox();
         test1.clickRefreshGmail();
-        System.out.println("Тест прошел");
         test1.findLetterSubject(letterSubjectValue);
+        test1.clickReceiveLetter();
+        Thread.sleep(3000);
+
+
 
 
 

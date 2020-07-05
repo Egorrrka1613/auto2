@@ -11,9 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Base {
     private WebDriver driver;
     private int waitTime = 5;
-    private int waitTimeTest = 10;
-    private int waitTimeToSubject = 5000;
-    private int waitTimeToSubjectTest = 20000;
+    private int waitTimeTest = 5;
+    private int waitTimeToSubjectTest = 200;
 
     public WebDriver getDriver() { return driver; }
 
@@ -52,7 +51,8 @@ public class Base {
     public boolean waitVisibilityElement (String xpath) {
         WebDriverWait we = new WebDriverWait(driver, waitTimeTest, waitTimeToSubjectTest);
         try {
-            we.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(xpath))));
+            //we.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(xpath)))); Код, который дал Коля
+            we.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));   // Альтернатива из интернета
             return true;
         }
         catch (Exception ex) {

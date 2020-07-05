@@ -12,12 +12,10 @@ import org.openqa.selenium.WebElement;
 import ru.yandex.pageObject.MailPageObject;
 import testClass.ChromeBaseTest;
 
-import static ru.yandex.randomStringGenerator.textLetterChoice;
 import static ru.yandex.randomStringGenerator.letterSubjectValue;
+import static ru.yandex.randomStringGenerator.textLetterChoiceValue;
 
 
-import static org.junit.Assert.*;
-import org.junit.Assert;
 
 
 public class AutorizationGmail extends ChromeBaseTest {
@@ -42,7 +40,7 @@ public class AutorizationGmail extends ChromeBaseTest {
         System.out.println(test1.checkWindowNewLetter());
         test1.setAddresser("testerawto@yandex.ru");
         test1.setLetterSubject(letterSubjectValue);
-        test1.writeTextLetter(textLetterChoice());
+        test1.writeTextLetter(textLetterChoiceValue);
         test1.setUploadFile();
         Thread.sleep(3000);
         test1.clickSendLetter();
@@ -51,6 +49,9 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.findLetterSubject(letterSubjectValue);
         test1.clickReceiveLetter();
         test1.compareLetterSubject(letterSubjectValue);
+        test1.compareLetterText(textLetterChoiceValue);
+
+
 
         Thread.sleep(3000);
 

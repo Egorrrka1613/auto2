@@ -34,6 +34,7 @@ import java.util.UUID;
     String i = textLetter.get(rand.nextInt(textLetter.size()));
     return i;
   }
+  public static String textLetterChoiceValue = textLetterChoice();
 }
 
 

@@ -60,15 +60,17 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//span [@class = 'mail-ComposeButton-Refresh js-main-action-refresh ns-action']")
     private WebElement refreshMail;
 
-
-    @FindBy(xpath = ".//span [@class= 'mail-MessageSnippet-Item mail-MessageSnippet-Item_subject']/span")
-    private WebElement letterSubjectInBox;
+    //@FindBy(xpath = ".//span [@class= 'mail-MessageSnippet-Item mail-MessageSnippet-Item_subject']/span")
+    //private WebElement letterSubjectInBox;
 
     @FindBy(xpath = ".//div[@class = 'ns-view-container-desc mail-MessagesList js-messages-list']/div[1]/div/div[2]/div[1]/div[1]")
     private WebElement receiveLetter;
 
     @FindBy(xpath = ".//span[@class = 'mail-Message-Toolbar-Subject-Wrapper']")
-    private WebElement letterSubjectValueInBoxXpath;
+    private WebElement letterSubjectValueInBox;
+
+    @FindBy(xpath = ".//div[@class = 'js-message-body-content mail-Message-Body-Content']")
+    private WebElement textLetterInBox;
 
 
 
@@ -227,17 +229,29 @@ public class MailPageObject extends Base {
     public void clickReceiveLetter() {click(receiveLetter);}
 
     /**
-     * Метод для сравнения темы письма
+     * Метод для сравнения темы писем
      */
 
-    @Step ("Сравнение письма")
-    public void compareLetterSubject (String x) {
-        //String xxx = getText(letterSubjectInBox);
-        String letterSubjectValueInBoxStr = getText(letterSubjectValueInBoxXpath);
-        if (x.equals(letterSubjectValueInBoxStr))
+    @Step ("Сравнение темм писем")
+    public void compareLetterSubject (String text) {
+        String letterSubjectValueInBoxStr = getText(letterSubjectValueInBox);
+        if (text.equals(letterSubjectValueInBoxStr))
             System.out.println("Темы равны");
         else System.out.println("Темы не равны");
 
+    }
+
+    /**
+     * Метод для сравнения текста писем
+     */
+
+    @Step("Сравнение текста писем")
+    public void compareLetterText (String text) {
+        String textLetterInBoxStr = getText(textLetterInBox);
+        if (text.equals(textLetterInBoxStr))
+            System.out.println("Тесты сравниваемых писем равны");
+        else
+            System.out.println("Тексты сравниваемых писем различаются");
     }
 
 

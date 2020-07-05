@@ -67,6 +67,11 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//div[@class = 'ns-view-container-desc mail-MessagesList js-messages-list']/div[1]/div/div[2]/div[1]/div[1]")
     private WebElement receiveLetter;
 
+    @FindBy(xpath = ".//span[@class = 'mail-Message-Toolbar-Subject-Wrapper']")
+    private WebElement letterSubjectValueInBoxXpath;
+
+
+
 
 
     /*
@@ -206,7 +211,7 @@ public class MailPageObject extends Base {
         try {
             String xpath = ".//span[@title = '" + subjectLetter + "']";
             click(xpath);
-            //c8232d36-d6da-4676-94bc-f27a3b27ccbb .//span[@title = 'c8232d36-d6da-4676-94bc-f27a3b27ccbb']
+            //.//span[@title = 'c8232d36-d6da-4676-94bc-f27a3b27ccbb'] --- xpath для проверки темы
         }
         catch (UnreachableBrowserException e) {
             System.out.println("Письмо с указанной темой отсутствует");
@@ -220,6 +225,20 @@ public class MailPageObject extends Base {
 
     @Step ("Открываем принятое письмо")
     public void clickReceiveLetter() {click(receiveLetter);}
+
+    /**
+     * Метод для сравнения темы письма
+     */
+
+    @Step ("Сравнение письма")
+    public void compareLetterSubject (String x) {
+        //String xxx = getText(letterSubjectInBox);
+        String letterSubjectValueInBoxStr = getText(letterSubjectValueInBoxXpath);
+        if (x.equals(letterSubjectValueInBoxStr))
+            System.out.println("Темы равны");
+        else System.out.println("Темы не равны");
+
+    }
 
 
 

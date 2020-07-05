@@ -132,9 +132,9 @@ public class MailPageObject extends Base {
         try {
             getText(uploadFile);
         } catch (NoSuchElementException e) {
-            return "Форма создания письма не найдена";
+            return "Форма не найдена";
         }
-        return "Форма создания письма открылась";
+        return "Форма найдена";
     }
 
     /**
@@ -193,11 +193,10 @@ public class MailPageObject extends Base {
     @Step("Нажимаем \"Проверить, есть ли новые письма \"")
     public void clickRefreshGmail() {click(refreshMail);}
 
-
     /**
      *  В этом методе проверяем соответствие темы письма
      */
-    /*
+
     @Step("Проверяем тему письма")
     public String checkLetterSubject() {
         String result;
@@ -212,20 +211,12 @@ public class MailPageObject extends Base {
 
         return result;
     }
-     */
 
-    @Step("Проверяем наличие письма, с указанной темой")
-    public void findLetterSubject(String subjectLetter) {
-        try {
-            String xpath = ".//span[@title = '" + subjectLetter + "']";
-            click(xpath);
-        }
-        catch (NoSuchElementException e) {
-            System.out.println("Письмо с указанной темой отсутствует");
-        }
-        System.out.println("Письмо с указанной темой присутствует");
+    @Step("Проверяем тему письма")
+    public void clickElement(String name) {
+        String xpath = ".//span[@title = '" + name + "']";
+        click(xpath);
     }
-
 
     /**
      * Определение корректности перевода слова.

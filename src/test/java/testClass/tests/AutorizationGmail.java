@@ -51,6 +51,8 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.compareLetterSubject(letterSubjectValue);
         test1.compareLetterText(textLetterChoiceValue);
 
+         
+
 
 
         Thread.sleep(3000);

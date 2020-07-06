@@ -63,7 +63,7 @@ public class MailPageObject extends Base {
     //@FindBy(xpath = ".//span [@class= 'mail-MessageSnippet-Item mail-MessageSnippet-Item_subject']/span")
     //private WebElement letterSubjectInBox;
 
-    @FindBy(xpath = ".//div[@class = 'ns-view-container-desc mail-MessagesList js-messages-list']/div[1]/div/div[2]/div[1]/div[1]")
+    @FindBy(xpath = ".//div[@class = 'ns-view-container-desc mail-MessagesList js-messages-list']/div[1]/div/div[2]/div[1]/div[1]/div")
     private WebElement receiveLetter;
 
     @FindBy(xpath = ".//span[@class = 'mail-Message-Toolbar-Subject-Wrapper']")
@@ -213,7 +213,7 @@ public class MailPageObject extends Base {
         try {
             String xpath = ".//span[@title = '" + subjectLetter + "']";
             click(xpath);
-            //.//span[@title = 'c8232d36-d6da-4676-94bc-f27a3b27ccbb'] --- xpath для проверки темы
+            //.//span[@title = '163fa291-0e2a-4749-9494-29f0ce7b70bb'] --- xpath для проверки темы
         }
         catch (UnreachableBrowserException e) {
             System.out.println("Письмо с указанной темой отсутствует");
@@ -226,7 +226,10 @@ public class MailPageObject extends Base {
      */
 
     @Step ("Открываем принятое письмо")
-    public void clickReceiveLetter() {click(receiveLetter);}
+    public void clickReceiveLetter() {
+
+        click(receiveLetter);
+    }
 
     /**
      * Метод для сравнения темы писем

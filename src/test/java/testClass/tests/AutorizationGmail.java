@@ -55,7 +55,7 @@ public class AutorizationGmail extends ChromeBaseTest {
         System.out.println("Переход во входящее письмо выполнен");
         test1.compareLetterSubject(letterSubjectValue);
         test1.compareLetterText(textLetterChoiceValue);
-        test1.dowonladAttach();
+        test1.dowonladCheckAttach();
 
         Thread.sleep(3000);
 

@@ -263,13 +263,14 @@ public class MailPageObject extends Base {
      */
 
     @Step("Скачиваем аттач письма")
-    public void dowonladAttach() throws InterruptedException {
-        //File fileToSave = new File("C:/dowonlad/autooo/README.txt");
-       // CloseableHttpClient httpClient = HttpClient.createDefault();
+    public void dowonladCheckAttach() throws InterruptedException {
         click(buttonDowonladAttach);
         Thread.sleep(3000);
         System.out.println("Файл скачан");
-        System.out.println(new File("C:/Users/Егор/Downloads/README.txt").isFile());
+        if (new File("C:/Users/Егор/Downloads/README.txt").isFile())
+            System.out.println("Файл присутствует в директории загрузки");
+        else
+            System.out.println("Файл отсутствует в директории загрузки");
     }
 
 

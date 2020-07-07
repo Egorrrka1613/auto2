@@ -8,9 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.Base;
-import ru.yandex.randomStringGenerator;
-
-import static ru.yandex.randomStringGenerator.letterSubjectValue;
+import java.io.File;
 
 public class MailPageObject extends Base {
 
@@ -71,6 +69,9 @@ public class MailPageObject extends Base {
 
     @FindBy(xpath = ".//div[@class = 'js-message-body-content mail-Message-Body-Content']")
     private WebElement textLetterInBox;
+
+    @FindBy(xpath = ".//a[@class = 'mail-File-Actions-Item js-skip-click-message-item js-attachment-actions-item js-download-attachment mail-File-Actions-Item_secondary']")
+    private WebElement buttonDowonladAttach;
 
 
 
@@ -139,13 +140,13 @@ public class MailPageObject extends Base {
      */
 
     @Step ("Проверяем наличие формы создания нового письма")
-    public String checkWindowNewLetter(){
+    public void checkWindowNewLetter(){
         try {
             getText(uploadFile);
         } catch (NoSuchElementException e) {
-            return "Форма не найдена";
+            System.out.println("Форма не найдена");
         }
-        return "Форма найдена";
+        System.out.println("Форма найдена");
     }
 
     /**
@@ -239,8 +240,8 @@ public class MailPageObject extends Base {
     public void compareLetterSubject (String text) {
         String letterSubjectValueInBoxStr = getText(letterSubjectValueInBox);
         if (text.equals(letterSubjectValueInBoxStr))
-            System.out.println("Темы равны");
-        else System.out.println("Темы не равны");
+            System.out.println("Темы сравниваемых писем равны");
+        else System.out.println("Темы сравниваемых писем не равны");
 
     }
 
@@ -252,9 +253,23 @@ public class MailPageObject extends Base {
     public void compareLetterText (String text) {
         String textLetterInBoxStr = getText(textLetterInBox);
         if (text.equals(textLetterInBoxStr))
-            System.out.println("Тесты сравниваемых писем равны");
+            System.out.println("Тексты сравниваемых писем равны");
         else
             System.out.println("Тексты сравниваемых писем различаются");
+    }
+
+    /**
+     * Метод для скачивания аттача письма
+     */
+
+    @Step("Скачиваем аттач письма")
+    public void dowonladAttach() throws InterruptedException {
+        //File fileToSave = new File("C:/dowonlad/autooo/README.txt");
+       // CloseableHttpClient httpClient = HttpClient.createDefault();
+        click(buttonDowonladAttach);
+        Thread.sleep(3000);
+        System.out.println("Файл скачан");
+        System.out.println(new File("C:/Users/Егор/Downloads/README.txt").isFile());
     }
 
 

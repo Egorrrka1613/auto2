@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-  public class randomStringGenerator {
+  public class RandomStringGenerator {
   public static void main(String[] args) {
   }
 
@@ -14,7 +14,6 @@ import java.util.UUID;
   public static String letterSubject() {
 
     String uuid = UUID.randomUUID().toString();
-    System.out.println(uuid + " Значение, сгенерированное в методе");
     return uuid;
   }
   public static String letterSubjectValue = letterSubject();

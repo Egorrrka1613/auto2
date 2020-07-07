@@ -12,8 +12,8 @@ import org.openqa.selenium.WebElement;
 import ru.yandex.pageObject.MailPageObject;
 import testClass.ChromeBaseTest;
 
-import static ru.yandex.randomStringGenerator.letterSubjectValue;
-import static ru.yandex.randomStringGenerator.textLetterChoiceValue;
+import static ru.yandex.RandomStringGenerator.letterSubjectValue;
+import static ru.yandex.RandomStringGenerator.textLetterChoiceValue;
 
 
 
@@ -35,25 +35,27 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.clickEnterLoginComplate();
         test1.setEnterPassword("010203QAZ");
         test1.clickEnterPasswordComplate();
+        System.out.println("Авторизация прошла");
         test1.clickWriteLetter();
         test1.checkWindowNewLetter();
-        System.out.println(test1.checkWindowNewLetter());
         test1.setAddresser("testerawto@yandex.ru");
         test1.setLetterSubject(letterSubjectValue);
         test1.writeTextLetter(textLetterChoiceValue);
         test1.setUploadFile();
         Thread.sleep(3000);
         test1.clickSendLetter();
+        System.out.println("Отправили письмо");
         test1.clickReturnToInBox();
+        System.out.println("Вернулись во входящие");
         test1.clickRefreshGmail();
+        System.out.println("Почтовый ящик обновлен");
         test1.findLetterSubject(letterSubjectValue);
+        System.out.println("Новое письмо найдено");
         test1.clickReceiveLetter();
+        System.out.println("Переход во входящее письмо выполнен");
         test1.compareLetterSubject(letterSubjectValue);
         test1.compareLetterText(textLetterChoiceValue);
-
-         
-
-
+        test1.dowonladAttach();
 
         Thread.sleep(3000);
 

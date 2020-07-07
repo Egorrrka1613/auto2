@@ -56,6 +56,10 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.compareLetterSubject(letterSubjectValue);
         test1.compareLetterText(textLetterChoiceValue);
         test1.dowonladCheckAttach();
+        test1.clickButtonSetting();
+        System.out.println("Кликнули по \"Настройки\"");
+        test1.clickPersonalDataAndSignature();
+        System.out.println("Кликнули по \"Личные данные, подпись, портрет\"");
 
         Thread.sleep(3000);
 

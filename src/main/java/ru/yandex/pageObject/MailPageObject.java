@@ -73,6 +73,13 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//a[@class = 'mail-File-Actions-Item js-skip-click-message-item js-attachment-actions-item js-download-attachment mail-File-Actions-Item_secondary']")
     private WebElement buttonDowonladAttach;
 
+    @FindBy (xpath = ".//button [@class = 'control button2 button2_view_classic button2_theme_default mail-GhostButton mail-SettingsButton']")
+    private WebElement buttonSetting;
+
+    @FindBy(xpath = ".//a [@class = 'mail-SettingsPopup__menu-item' and @href = '#setup/sender']")
+    private WebElement personalDataAndSignature;
+
+    //@FindBy(xpath = ".")
 
 
 
@@ -272,6 +279,22 @@ public class MailPageObject extends Base {
         else
             System.out.println("Файл отсутствует в директории загрузки");
     }
+
+    /**
+     * В этом методе кликаем по кнопке "Настройки"
+     */
+
+    @Step("Кликаем по кнопке настройки")
+    public void clickButtonSetting() {
+        click(buttonSetting);
+    }
+
+    /**
+     * В этом методе клаикаем по кнопке "Персональные данные, подпись, портрет"
+     */
+
+    @Step("Кликаем по копке \"Персональые данные, подпись, портрет\"")
+    public void clickPersonalDataAndSignature() {click(personalDataAndSignature);}
 
 
 

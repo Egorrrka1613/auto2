@@ -79,7 +79,14 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//a [@class = 'mail-SettingsPopup__menu-item' and @href = '#setup/sender']")
     private WebElement personalDataAndSignature;
 
-    //@FindBy(xpath = ".")
+    @FindBy(xpath = ".//div [@class ='cke_wysiwyg_div cke_reset cke_enable_context_menu cke_editable cke_editable_themed cke_contents_ltr']")
+    private WebElement signatureField;
+
+    @FindBy(xpath = ".//span [@class = 'ui-button-text']/..")
+    private WebElement buttonAddSignature;
+
+    @FindBy(xpath = "//a [@class = 'b-setup-title__link' and @href = '#inbox']")
+    private WebElement buttonToGmail;
 
 
 
@@ -295,6 +302,31 @@ public class MailPageObject extends Base {
 
     @Step("Кликаем по копке \"Персональые данные, подпись, портрет\"")
     public void clickPersonalDataAndSignature() {click(personalDataAndSignature);}
+
+    /**
+     * В этом методе вводим новую подпись
+     */
+
+    @Step("Вводим в поле подписи переданное значение")
+    public void setSignatureField (String text) {
+        setText(signatureField, text);
+    }
+
+    /**
+     * В этом методе кликаем по кнопке "Добавить подпись"
+     */
+
+    @Step("Кликаем по конпке \"Добавить подпись\"")
+    public void clickButtonAddSignature() {click(buttonAddSignature);}
+
+    /**
+     * В этом методе возвращаемся в почту, после смены подписи
+     */
+
+    @Step("Переходим в почту, из меню настроек")
+    public void clickButtonToGmail() {click(buttonToGmail);}
+
+
 
 
 

@@ -12,10 +12,7 @@ import org.openqa.selenium.WebElement;
 import ru.yandex.pageObject.MailPageObject;
 import testClass.ChromeBaseTest;
 
-import static ru.yandex.RandomStringGenerator.letterSubjectValue;
-import static ru.yandex.RandomStringGenerator.textLetterChoiceValue;
-
-
+import static ru.yandex.RandomStringGenerator.*;
 
 
 public class AutorizationGmail extends ChromeBaseTest {
@@ -60,6 +57,16 @@ public class AutorizationGmail extends ChromeBaseTest {
         System.out.println("Кликнули по \"Настройки\"");
         test1.clickPersonalDataAndSignature();
         System.out.println("Кликнули по \"Личные данные, подпись, портрет\"");
+        test1.setSignatureField(signatureGenerateValue);
+        System.out.println("Ввели новый текст подписи");
+        test1.clickButtonAddSignature();
+        System.out.println("Добавили новую подпись");
+        test1.clickButtonToGmail();
+        System.out.println("Вернулись из настроек в почтовый ящик");
+
+
+
+
 
         Thread.sleep(3000);
 

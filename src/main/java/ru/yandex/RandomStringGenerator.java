@@ -3,8 +3,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
-  public class RandomStringGenerator {
+public class RandomStringGenerator {
   public static void main(String[] args) {
   }
 
@@ -19,7 +20,7 @@ import java.util.UUID;
   public static String letterSubjectValue = letterSubject();
 
   /*
-  Метод, случайно выбирающий значение, которое будет передано в текст письма
+  Метод, случайно выбирающий значение, которое будет передано в переменную, используемую для хранения текста письма
    */
 
   public static String textLetterChoice() {
@@ -33,7 +34,24 @@ import java.util.UUID;
     String i = textLetter.get(rand.nextInt(textLetter.size()));
     return i;
   }
+
   public static String textLetterChoiceValue = textLetterChoice();
+
+  // Метод, генерирующий подпись и переменная хранящее значения из метода
+
+  public static String signatureGenerate() {
+    int length = 8;
+    String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            + "abcdefghijklmnopqrstuvwxyz"
+            + "0123456789";
+    String str = new Random().ints(length, 0, chars.length())
+            .mapToObj(i -> "" + chars.charAt(i))
+            .collect(Collectors.joining());
+    return str;
+  }
+
+  public static String signatureGenerateValue = signatureGenerate();
+
 }
 
 

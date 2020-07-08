@@ -12,6 +12,8 @@ import org.openqa.selenium.WebElement;
 import ru.yandex.pageObject.MailPageObject;
 import testClass.ChromeBaseTest;
 
+import java.io.IOException;
+
 import static ru.yandex.RandomStringGenerator.*;
 
 
@@ -24,7 +26,7 @@ public class AutorizationGmail extends ChromeBaseTest {
     @DisplayName("Создание, просмотр и удаление банковской гарантии")
     @Description("Создание, просмотр и удаление банковской гарантии")
 
-    public void startTest() throws InterruptedException {
+    public void startTest() throws InterruptedException, IOException {
         toURL("https://mail.yandex.ru/?noretpath=1");
         MailPageObject test1 = new MailPageObject(getDriver());
         test1.clickComeGmail();
@@ -38,6 +40,9 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.setAddresser("testerawto@yandex.ru");
         test1.setLetterSubject(letterSubjectValue);
         test1.writeTextLetter(textLetterChoiceValue);
+        Thread.sleep(3000);
+        test1.fileNewCreate();
+        System.out.println("Создан файл аттача");
         test1.setUploadFile();
         Thread.sleep(3000);
         test1.clickSendLetter();
@@ -63,6 +68,11 @@ public class AutorizationGmail extends ChromeBaseTest {
         System.out.println("Добавили новую подпись");
         test1.clickButtonToGmail();
         System.out.println("Вернулись из настроек в почтовый ящик");
+
+
+
+
+
 
 
 

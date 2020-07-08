@@ -1,7 +1,6 @@
 package ru.yandex.pageObject;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +8,11 @@ import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.Base;
 import java.io.File;
+import java.io.IOException;
+
+import static ru.yandex.FileToAttach.createFileToAttach;
+import static ru.yandex.FileToAttach.deleteAttach;
+
 
 public class MailPageObject extends Base {
 
@@ -67,7 +71,7 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//span[@class = 'mail-Message-Toolbar-Subject-Wrapper']")
     private WebElement letterSubjectValueInBox;
 
-    @FindBy(xpath = ".//div[@class = 'js-message-body-content mail-Message-Body-Content']")
+    @FindBy(xpath = ".//div[@class = 'js-message-body-content mail-Message-Body-Content']/div[1]")
     private WebElement textLetterInBox;
 
     @FindBy(xpath = ".//a[@class = 'mail-File-Actions-Item js-skip-click-message-item js-attachment-actions-item js-download-attachment mail-File-Actions-Item_secondary']")
@@ -184,6 +188,14 @@ public class MailPageObject extends Base {
     @Step("Пишем текст письма")
     public void writeTextLetter (String text) {setText(textLetter, text);}
 
+    /**
+     * В этом методе создаем файл, для прикрепления к письму
+     */
+
+    @Step("Создаем файл для прикрепления к письму")
+    public void fileNewCreate() throws IOException {
+        createFileToAttach();
+    }
 
     /**
      *  В этом методе загружаем файл к письму
@@ -191,7 +203,9 @@ public class MailPageObject extends Base {
 
     @Step("Загружаем файл к письму")
     public void setUploadFile() {
-        setText(uploadFile,"C:\\dowonlad\\README.txt");
+        int numAtt = 1;
+        setText(uploadFile,"C:\\dowonlad\\autoTest\\attach\\file" + numAtt +".txt");
+        numAtt++;
     }
 
     /**
@@ -281,10 +295,17 @@ public class MailPageObject extends Base {
         click(buttonDowonladAttach);
         Thread.sleep(3000);
         System.out.println("Файл скачан");
-        if (new File("C:/Users/Егор/Downloads/README.txt").isFile())
+        int numAtt = 1;
+        if (new File("C:/dowonlad/autoTest/attach/file" + numAtt +".txt").isFile())
             System.out.println("Файл присутствует в директории загрузки");
         else
             System.out.println("Файл отсутствует в директории загрузки");
+        numAtt++;
+    }
+
+    @Step("Удаляем аттач")
+    public void deliteFuckAttach() {
+        deleteAttach();
     }
 
     /**

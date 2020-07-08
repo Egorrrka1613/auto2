@@ -6,8 +6,6 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class RandomStringGenerator {
-  public static void main(String[] args) {
-  }
 
   /*
   Метод, генерирующий значение темы письма и переменная, в которую это значение передается

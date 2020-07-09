@@ -40,7 +40,6 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.setAddresser("testerawto@yandex.ru");
         test1.setLetterSubject(letterSubjectValue);
         test1.writeTextLetter(textLetterChoiceValue);
-        Thread.sleep(3000);
         test1.fileNewCreate();
         System.out.println("Создан файл аттача");
         test1.setUploadFile();
@@ -68,6 +67,9 @@ public class AutorizationGmail extends ChromeBaseTest {
         System.out.println("Добавили новую подпись");
         test1.clickButtonToGmail();
         System.out.println("Вернулись из настроек в почтовый ящик");
+        test1.clickWriteLetter();
+        test1.checkWindowNewLetter();
+
 
 
 

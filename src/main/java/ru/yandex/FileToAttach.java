@@ -8,11 +8,12 @@ import java.io.IOException;
 import static java.nio.file.Files.delete;
 
 public class FileToAttach {
+  /*
 
   //Переменная, содержащая номер файла
   private static int numFile = 1;
 
-/*
+
   public static String getSeparetor() {
     String fileSeparator = System.getProperty("file.separator");
     String absoluteFilePath = fileSeparator + "dowonlad" + fileSeparator + "autoTest" + fileSeparator + "attach" + fileSeparator +"file" + numFile + ".txt";
@@ -24,20 +25,20 @@ public class FileToAttach {
     return file;
   }
 
- */
+
 
 
 
   //В этом методе создается и заполняется значениями файл для аттача
-  public static void createFileToAttach() throws IOException {
+  public static void createFileToAttach(File file) throws IOException {
     //File file123 = getFile(getSeparetor());
 
     //Определяем символ разделителя директории
-    String fileSeparator = System.getProperty("file.separator");
+    //String fileSeparator = System.getProperty("file.separator");
 
     //Указываем путь, до папки, где сохраняются файлы
-    String absoluteFilePath = fileSeparator + "dowonlad" + fileSeparator + "autoTest" + fileSeparator + "attach" + fileSeparator +"file" + numFile + ".txt";
-    File file = new File(absoluteFilePath);
+    //String absoluteFilePath = fileSeparator + "dowonlad" + fileSeparator + "autoTest" + fileSeparator + "attach" + fileSeparator +"file" + numFile + ".txt";
+    //File file = new File(absoluteFilePath);
 
     if(file.createNewFile()){
       System.out.println(file + " Файл аттача создан");
@@ -56,11 +57,13 @@ public class FileToAttach {
   }
 
   //В этом методе удаляется файл аттача
-  public static void deleteAttach() {
-    //boolean deleted = file123.delete();
+  public static void deleteAttach(File file) {
+    boolean deleted = file.delete();
     numFile--;
   }
 
 
+
+   */
 
 }

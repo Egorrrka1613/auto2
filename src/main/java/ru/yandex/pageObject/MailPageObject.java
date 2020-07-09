@@ -10,8 +10,6 @@ import ru.yandex.Base;
 import java.io.File;
 import java.io.IOException;
 
-import static ru.yandex.FileToAttach.createFileToAttach;
-import static ru.yandex.FileToAttach.deleteAttach;
 
 
 public class MailPageObject extends Base {
@@ -193,19 +191,23 @@ public class MailPageObject extends Base {
      */
 
     @Step("Создаем файл для прикрепления к письму")
-    public void fileNewCreate() throws IOException {
-        createFileToAttach();
+    public void fileNewCreate() {
+        try {
+            new File("C:/dowonlad/autoTest/attach/file.txt").createNewFile();
+        }
+        catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     /**
-     *  В этом методе загружаем файл к письму
+     *  В этом методе загружаем файл к письму, после загрузки удаляем файл
      */
 
     @Step("Загружаем файл к письму")
     public void setUploadFile() {
-        int numAtt = 1;
-        setText(uploadFile,"C:\\dowonlad\\autoTest\\attach\\file" + numAtt +".txt");
-        numAtt++;
+        setText(uploadFile,"C:\\dowonlad\\autoTest\\attach\\file.txt");
+
     }
 
     /**
@@ -287,25 +289,22 @@ public class MailPageObject extends Base {
     }
 
     /**
-     * Метод для скачивания аттача письма
+     * Метод для скачивания, проверки наличия и удаления аттачей
      */
 
-    @Step("Скачиваем аттач письма")
+    @Step("Скачиваем аттач письма, проверяем что он сохранился в директорию загрузки, в случае, если файл найден, удаляем созданный и скачанный файлы")
     public void dowonladCheckAttach() throws InterruptedException {
         click(buttonDowonladAttach);
         Thread.sleep(3000);
         System.out.println("Файл скачан");
-        int numAtt = 1;
-        if (new File("C:/dowonlad/autoTest/attach/file" + numAtt +".txt").isFile())
+
+        if (new File("C:/Users/Егор/Downloads/file.txt").isFile()) {
             System.out.println("Файл присутствует в директории загрузки");
+            new File("C:/Users/Егор/Downloads/file.txt").delete();
+            new File("C:/dowonlad/autoTest/attach/file.txt").delete();
+        }
         else
             System.out.println("Файл отсутствует в директории загрузки");
-        numAtt++;
-    }
-
-    @Step("Удаляем аттач")
-    public void deliteFuckAttach() {
-        deleteAttach();
     }
 
     /**

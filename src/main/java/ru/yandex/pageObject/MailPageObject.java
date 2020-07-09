@@ -60,9 +60,6 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//span [@class = 'mail-ComposeButton-Refresh js-main-action-refresh ns-action']")
     private WebElement refreshMail;
 
-    //@FindBy(xpath = ".//span [@class= 'mail-MessageSnippet-Item mail-MessageSnippet-Item_subject']/span")
-    //private WebElement letterSubjectInBox;
-
     @FindBy(xpath = ".//div[@class = 'ns-view-container-desc mail-MessagesList js-messages-list']/div[1]/div/div[2]/div[1]/div[1]/div")
     private WebElement receiveLetter;
 
@@ -158,7 +155,7 @@ public class MailPageObject extends Base {
     @Step ("Проверяем наличие формы создания нового письма")
     public void checkWindowNewLetter(){
         try {
-            getText(uploadFile);
+            getText(windowNewLetter);
         } catch (NoSuchElementException e) {
             System.out.println("Форма не найдена");
         }

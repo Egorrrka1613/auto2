@@ -69,6 +69,11 @@ public class AutorizationGmail extends ChromeBaseTest {
         System.out.println("Вернулись из настроек в почтовый ящик");
         test1.clickWriteLetter();
         test1.checkWindowNewLetter();
+        test1.setAddresser("testerawto@yandex.ru");
+        letterSubject(); //Генерируем новую тему письма
+        test1.setLetterSubject(letterSubjectValue);
+        textLetterChoice(); //Генерируем новый текст письма
+        test1.writeTextLetter(textLetterChoiceValue);
 
 
 

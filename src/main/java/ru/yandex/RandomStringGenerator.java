@@ -15,7 +15,6 @@ public class RandomStringGenerator {
     String uuid = UUID.randomUUID().toString();
     return uuid;
   }
-  public static String letterSubjectValue = letterSubject();
 
   /*
   Метод, случайно выбирающий значение, которое будет передано в переменную, используемую для хранения текста письма
@@ -33,7 +32,6 @@ public class RandomStringGenerator {
     return i;
   }
 
-  public static String textLetterChoiceValue = textLetterChoice();
 
   // Метод, генерирующий подпись и переменная хранящее значения из метода
 
@@ -48,7 +46,6 @@ public class RandomStringGenerator {
     return str;
   }
 
-  public static String signatureGenerateValue = signatureGenerate();
 
 }
 

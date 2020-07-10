@@ -51,7 +51,7 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//button[@class = 'control button2 button2_view_default button2_tone_default button2_size_l button2_theme_action button2_pin_circle-circle ComposeControlPanelButton-Button ComposeControlPanelButton-Button_action']")
     private WebElement sendLetter;
 
-    @FindBy(xpath = ".//*[@id=\"cke_1_contents\"]/div")
+    @FindBy(xpath = ".//div[@class='cke_wysiwyg_div cke_reset cke_enable_context_menu cke_editable cke_editable_themed cke_contents_ltr']")
     private WebElement textLetter;
 
     @FindBy(xpath = ".//a[@class = 'control link link_theme_normal ComposeDoneScreen-Link' and @href = '#inbox']")

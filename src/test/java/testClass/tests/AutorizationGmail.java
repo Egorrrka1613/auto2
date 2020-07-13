@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import ru.yandex.pageObject.MailPageObject;
 import testClass.ChromeBaseTest;
 
+import static org.junit.Assert.assertTrue;
 import static ru.yandex.RandomStringGenerator.*;
 
 
@@ -39,6 +40,7 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.clickWriteLetter();
         test1.checkWindowNewLetter();
         test1.setAddresser("testerawto@yandex.ru");
+
         String letterSubjectValue1 = letterSubject(); // Переменная с темой первого письма
         test1.setLetterSubject(letterSubjectValue1);
         String textLetterChoiceValue1 = textLetterChoice(); // Переменная с текстом первого письма
@@ -65,23 +67,30 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.clickPersonalDataAndSignature();
         System.out.println("Кликнули по \"Личные данные, подпись, портрет\"");
         String signatureGenerateValue1 = signatureGenerate(); // Переменая с подписью письма
+        System.out.println(signatureGenerateValue1 + "Подпись письмаааа1");
         test1.setSignatureField(signatureGenerateValue1);
         System.out.println("Ввели новый текст подписи");
         test1.clickButtonAddSignature();
         System.out.println("Добавили новую подпись");
         test1.clickButtonToGmail();
         System.out.println("Вернулись из настроек в почтовый ящик");
+
         test1.clickWriteLetter();
         test1.checkWindowNewLetter();
         test1.setAddresser("testerawto@yandex.ru");
-        String letterSubjectValue2 = letterSubject();; //Генерируем новую тему письма и записываем в новую переменную
+        String letterSubjectValue2 = letterSubject();; //Генерируем вторую тему письма и записываем в новую переменную
         test1.setLetterSubject(letterSubjectValue2);
-        String textLetterChoiceValue2 = textLetterChoice(); //Генерируем новый текст письма
+        String textLetterChoiceValue2 = textLetterChoice(); //Генерируем текст второго письма
         test1.writeTextLetter(textLetterChoiceValue2);
         test1.fileNewCreate();
         System.out.println("Создан файл аттача");
         test1.setUploadFile();
         Thread.sleep(3000);
+        test1.clickSignList();
+        System.out.println(signatureGenerateValue1 + "Подпись пиьмаааа2");
+        test1.findSignLetter(signatureGenerateValue1);
+
+        Thread.sleep(9000);
         test1.clickSendLetter();
 
 
@@ -96,7 +105,9 @@ public class AutorizationGmail extends ChromeBaseTest {
 
 
 
-        Thread.sleep(3000);
+
+
+
 
 
 

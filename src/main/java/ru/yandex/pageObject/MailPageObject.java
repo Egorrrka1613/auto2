@@ -1,6 +1,7 @@
 package ru.yandex.pageObject;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,7 @@ import ru.yandex.Base;
 import java.io.File;
 import java.io.IOException;
 
+//import static org.junit.Assert.assertTrue;   --- Нельзя импортировать т.к. в pom в теге <scope> указано значение test
 
 
 public class MailPageObject extends Base {
@@ -84,8 +86,14 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//span [@class = 'ui-button-text']/..")
     private WebElement buttonAddSignature;
 
-    @FindBy(xpath = "//a [@class = 'b-setup-title__link' and @href = '#inbox']")
+    @FindBy(xpath = ".//a [@class = 'b-setup-title__link' and @href = '#inbox']")
     private WebElement buttonToGmail;
+
+    @FindBy(xpath = ".//div[@class = 'ComposeReact-SignatureContainer']")
+    private WebElement signList;
+
+    @FindBy(xpath = ".//div[@class = 'ComposeReact-SignatureMenuAnchor']")
+    private WebElement signListOpen;
 
 
 
@@ -154,6 +162,8 @@ public class MailPageObject extends Base {
 
     @Step ("Проверяем наличие формы создания нового письма")
     public void checkWindowNewLetter(){
+        //assertTrue(getDriver().findElement(By.xpath(xpath)).getText().contains("Новое письмо")); --- недописаная попытка проверки окошка новго пиьсьма с использованием JUnit
+
         try {
             getText(windowNewLetter);
         } catch (NoSuchElementException e) {
@@ -343,6 +353,32 @@ public class MailPageObject extends Base {
     @Step("Переходим в почту, из меню настроек")
     public void clickButtonToGmail() {click(buttonToGmail);}
 
+    /**
+     * В этом методе открываем меню выбора подписи для письма
+     */
+
+    @Step("Открываем меню выбора подписи")
+    public void clickSignList() {
+        click(signList);
+        click(signListOpen);
+    }
+
+    /**
+     * В этом методе выбираем сформированную ранее подпись для письма
+     */
+
+    @Step("Выбираем подпись для письма")
+    public void findSignLetter(String signLetterVal) {
+        try {
+            String xpath = "//div[text() = '" + signLetterVal + "']/.";
+            System.out.println(xpath + " Хпас подписи");
+            click(xpath);
+        }
+        catch (Exception e) {
+            System.out.println("Указанная подпись не найдена");
+        }
+        System.out.println("Созданная подпись выбрана для письма");
+    }
 
 
 

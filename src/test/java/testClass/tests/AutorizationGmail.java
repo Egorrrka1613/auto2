@@ -5,6 +5,7 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import io.qameta.allure.junit4.DisplayName;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -40,7 +41,6 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.clickWriteLetter();
         test1.checkWindowNewLetter();
         test1.setAddresser("testerawto@yandex.ru");
-
         String letterSubjectValue1 = letterSubject(); // Переменная с темой первого письма
         test1.setLetterSubject(letterSubjectValue1);
         String textLetterChoiceValue1 = textLetterChoice(); // Переменная с текстом первого письма
@@ -51,6 +51,7 @@ public class AutorizationGmail extends ChromeBaseTest {
         Thread.sleep(3000); //Ожидание для загрузки файла
         test1.clickSendLetter();
         System.out.println("Отправили письмо");
+
         test1.clickReturnToInBox();
         System.out.println("Вернулись во входящие");
         test1.clickRefreshGmail();
@@ -67,14 +68,12 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.clickPersonalDataAndSignature();
         System.out.println("Кликнули по \"Личные данные, подпись, портрет\"");
         String signatureGenerateValue1 = signatureGenerate(); // Переменая с подписью письма
-        System.out.println(signatureGenerateValue1 + "Подпись письмаааа1");
         test1.setSignatureField(signatureGenerateValue1);
         System.out.println("Ввели новый текст подписи");
         test1.clickButtonAddSignature();
         System.out.println("Добавили новую подпись");
         test1.clickButtonToGmail();
         System.out.println("Вернулись из настроек в почтовый ящик");
-
         test1.clickWriteLetter();
         test1.checkWindowNewLetter();
         test1.setAddresser("testerawto@yandex.ru");
@@ -87,11 +86,30 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.setUploadFile();
         Thread.sleep(3000);
         test1.clickSignList();
-        System.out.println(signatureGenerateValue1 + "Подпись пиьмаааа2");
         test1.findSignLetter(signatureGenerateValue1);
-
-        Thread.sleep(9000);
         test1.clickSendLetter();
+        test1.clickReturnToInBox();
+        System.out.println("Вернулись во входящие");
+        test1.clickRefreshGmail();
+        System.out.println("Почтовый ящик обновлен");
+        test1.findLetterSubject(letterSubjectValue2);
+        System.out.println("Второе письмо найдено");
+        test1.clickReceiveLetter();
+        System.out.println("Переход во входящее письмо выполнен");
+        test1.compareLetterSubject(letterSubjectValue2);
+        test1.compareLetterText(textLetterChoiceValue2);
+        Assert.assertTrue(driver.findElement(By.xpath(".//div[@class = 'js-message-body-content mail-Message-Body-Content']/div[4]")).getText().contains(signatureGenerateValue1));
+        test1.clickInboxLetterButton();
+        test1.clickButtonChooseAllLetters();
+        test1.clickButtonDeleteLetter();
+        test1.clickConfirmDelete();
+        test1.checkExistAnyLetter();
+        System.out.println("Тест закончен");
+
+
+
+
+
 
 
 

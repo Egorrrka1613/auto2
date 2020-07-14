@@ -1,10 +1,7 @@
 package ru.yandex.pageObject;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.Base;
@@ -94,6 +91,21 @@ public class MailPageObject extends Base {
 
     @FindBy(xpath = ".//div[@class = 'ComposeReact-SignatureMenuAnchor']")
     private WebElement signListOpen;
+
+    @FindBy(xpath = ".//span[@class = 'mail-NestedList-Item-Name' and contains(text(), 'Входящие')]")
+    private WebElement inboxLetterButton;
+
+    @FindBy(xpath = ".//div[@class = 'ns-view-container-desc']/div[1]//span[@class = 'checkbox_view']")
+    private WebElement buttonChooseAllLetters;
+
+    @FindBy(xpath = ".//span[@class = 'mail-Toolbar-Item-Text js-toolbar-item-title js-toolbar-item-title-delete']")
+    private WebElement buttonDeleteLetter;
+
+    @FindBy(xpath = ".//span[@class = 'button2__text' and text() = 'Удалить']/..")
+    private WebElement confirmDelete;
+
+    @FindBy(xpath = ".//div[@class = 'ns-view-container-desc mail-MessagesList js-messages-list']/div[1]")
+    private WebElement existAnyLetter;
 
 
 
@@ -370,8 +382,8 @@ public class MailPageObject extends Base {
     @Step("Выбираем подпись для письма")
     public void findSignLetter(String signLetterVal) {
         try {
-            String xpath = "//div[text() = '" + signLetterVal + "']/.";
-            System.out.println(xpath + " Хпас подписи");
+            String xpath = "//div[contains(., '" + signLetterVal + "') and @class = 'SignaturesPopupMenu-Text']";
+            ////div[contains(., 'L1WMnuVp') and @class = 'SignaturesPopupMenu-Text'] -- хпас для проверки на странице
             click(xpath);
         }
         catch (Exception e) {
@@ -380,7 +392,58 @@ public class MailPageObject extends Base {
         System.out.println("Созданная подпись выбрана для письма");
     }
 
+    /**
+     * В этом методе возвращаемся в раздел "Входящие"
+     */
 
+    @Step("Возвращаемся в раздел \"Входящие\"")
+    public void clickInboxLetterButton() {
+        click(inboxLetterButton);
+    }
+
+    /**
+     *  В этом методе кликаем по чекбоксу, для выбора всех писем в почте
+     */
+
+    @Step("Выделяем все письма в почте")
+    public void clickButtonChooseAllLetters() {
+        click(buttonChooseAllLetters);
+    }
+
+    /**
+     * В этом метоже удаляем полученные письма
+     */
+
+    @Step("Удаляем все письма")
+    public void clickButtonDeleteLetter() {
+        click(buttonDeleteLetter);
+    }
+
+    /**
+     * В этом методе подтверждаем удаление всех отмеченных писем
+     */
+
+    @Step("Подтверждаем удаление")
+    public void clickConfirmDelete() {
+        click(confirmDelete);
+    }
+
+    /**
+     * В этом методе проверяем отсутствие писем в почте
+     * @return
+     */
+
+    @Step("Проверяем отсутствие писем в почте")
+    public boolean checkExistAnyLetter() {
+        Boolean elementCondition = false;
+        try {
+            elementCondition = getDriver().findElement(By.xpath(".//div[@class = 'ns-view-container-desc mail-MessagesList js-messages-list']/div[1]")).isDisplayed();        }
+        catch (Exception e) {
+            System.out.println("В почтовом ящике письма отсутствуют");
+            return elementCondition;
+        }
+        return elementCondition;
+    }
 
 
     /**

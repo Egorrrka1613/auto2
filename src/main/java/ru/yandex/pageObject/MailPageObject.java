@@ -455,6 +455,7 @@ public class MailPageObject extends Base {
 
         Boolean isPresent = getDriver().findElements(By.xpath(".//div[@class = 'ns-view-container-desc mail-MessagesList js-messages-list']/div[1]")).size() > 0;
         isPresent.toString();
+        
         //System.out.println("Результат удаления писем: " + isPresent);
 
         if (isPresent == false) {

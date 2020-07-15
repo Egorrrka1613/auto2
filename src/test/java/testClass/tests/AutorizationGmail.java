@@ -8,15 +8,10 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import ru.yandex.pageObject.MailPageObject;
 import testClass.ChromeBaseTest;
 
-import static org.junit.Assert.assertTrue;
 import static ru.yandex.RandomStringGenerator.*;
-
-
 
 
 
@@ -38,7 +33,6 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.setEnterPassword("010203QAZ");
         test1.clickEnterPasswordComplate();
         System.out.println("Авторизация прошла");
-
         test1.clickWriteLetter();
         test1.checkWindowNewLetter();
         test1.setAddresser("testerawto@yandex.ru");
@@ -52,7 +46,6 @@ public class AutorizationGmail extends ChromeBaseTest {
         Thread.sleep(3000); //Ожидание для загрузки файла
         test1.clickSendLetter();
         System.out.println("Отправили письмо");
-
         test1.clickReturnToInBox();
         System.out.println("Вернулись во входящие");
         test1.clickRefreshGmail();
@@ -64,6 +57,9 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.compareLetterSubject(letterSubjectValue1);
         test1.compareLetterText(textLetterChoiceValue1);
         test1.dowonladCheckAttach();
+        test1.deleteDowonladAttach();
+        test1.deleteCreateAttach();
+        System.out.println("Удалили файлы атачей");
         test1.clickButtonSetting();
         System.out.println("Кликнули по \"Настройки\"");
         test1.clickPersonalDataAndSignature();
@@ -86,6 +82,7 @@ public class AutorizationGmail extends ChromeBaseTest {
         System.out.println("Создан файл аттача");
         test1.setUploadFile();
         Thread.sleep(3000);
+        test1.deleteCreateAttach();
         test1.clickSignList();
         test1.findSignLetter(signatureGenerateValue1);
         test1.clickSendLetter();
@@ -104,39 +101,5 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.clickButtonChooseAllLetters();
         test1.clickButtonDeleteLetter();
         test1.checkExistAnyLetter();
-        System.out.println("Тест закончен");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*Thread.sleep(10000);
-
-        test1.clickLoginField();
-        test1.assertTranslateIsOk("кошка");
-         */
     }
 }

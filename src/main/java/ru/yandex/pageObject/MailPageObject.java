@@ -10,7 +10,6 @@ import java.io.IOException;
 
 //import static org.junit.Assert.assertTrue;   --- Нельзя импортировать т.к. в pom в теге <scope> указано значение test
 
-
 public class MailPageObject extends Base {
 
     public MailPageObject(WebDriver driver) {
@@ -109,9 +108,6 @@ public class MailPageObject extends Base {
 
     @FindBy(xpath = ".//div[text() = 'В папке «Входящие» нет писем.']")
     private WebElement checkNoLetter;
-
-
-
 
     /*
     @FindBy(xpath = ".//span[@class = 'mail-MessageSnippet-Item mail-MessageSnippet-Item_sender js-message-snippet-sender']")
@@ -323,7 +319,7 @@ public class MailPageObject extends Base {
      * Метод для скачивания, проверки наличия и удаления аттачей
      */
 
-    @Step("Скачиваем аттач письма, проверяем что он сохранился в директорию загрузки, в случае, если файл найден, удаляем созданный и скачанный файлы")
+    @Step("Скачиваем аттач письма, проверяем что он сохранился в директорию загрузки")
     public void dowonladCheckAttach() throws InterruptedException {
         click(buttonDowonladAttach);
         Thread.sleep(3000);
@@ -331,10 +327,26 @@ public class MailPageObject extends Base {
 
         if (new File("C:/Users/Егор/Downloads/file.txt").isFile()) {
             System.out.println("Файл присутствует в директории загрузки");
-            new File("C:/Users/Егор/Downloads/file.txt").delete();
-            new File("C:/dowonlad/autoTest/attach/file.txt").delete();
         } else
             System.out.println("Файл отсутствует в директории загрузки");
+    }
+
+    /**
+     * В этом методе удаляем скачанный аттач
+     */
+
+    @Step("Удаляем скачанный аттач файла")
+    public void deleteDowonladAttach() {
+        new File("C:/Users/Егор/Downloads/file.txt").delete();
+    }
+
+    /**
+     * В этом методе удаляем созданный аттач
+     */
+
+    @Step("Удаляем созданный аттач файла")
+    public void deleteCreateAttach() {
+        new File("C:/dowonlad/autoTest/attach/file.txt").delete();
     }
 
     /**
@@ -398,13 +410,10 @@ public class MailPageObject extends Base {
 
     @Step("Выбираем подпись для письма")
     public void findSignLetter(String signLetterVal) {
-        try {
-            String xpath = "//div[contains(., '" + signLetterVal + "') and @class = 'SignaturesPopupMenu-Text']";
-            ////div[contains(., 'L1WMnuVp') and @class = 'SignaturesPopupMenu-Text'] -- хпас для проверки на странице
-            click(xpath);
-        } catch (Exception e) {
-            System.out.println("Указанная подпись не найдена");
-        }
+        String xpath = "//div[contains(., '" + signLetterVal + "') and @class = 'SignaturesPopupMenu-Text']";
+        ////div[contains(., 'L1WMnuVp') and @class = 'SignaturesPopupMenu-Text'] -- хпас для проверки на странице
+        click(xpath);
+
         System.out.println("Созданная подпись выбрана для письма");
     }
 
@@ -452,31 +461,11 @@ public class MailPageObject extends Base {
 
     @Step("Проверяем отсутствие писем в почте")
     public void checkExistAnyLetter() {
-
         Boolean isPresent = getDriver().findElements(By.xpath(".//div[@class = 'ns-view-container-desc mail-MessagesList js-messages-list']/div[1]")).size() > 0;
-        isPresent.toString();
-        
-        //System.out.println("Результат удаления писем: " + isPresent);
-
-        if (isPresent == false) {
-            System.out.println("Письма удалены");
+        if (isPresent) {
+            System.out.println("Письма присутсвуют в почтовом ящике");
         }
         else
-            System.out.println("Письма присутсвуют в почтовом ящике");
+            System.out.println("Письма удалены");
     }
-
-
-    /**
-     * Определение корректности перевода слова.
-     * @param transText
-     */
-    /*
-    @Step ("Определение корректности перевода слова.")
-    public void assertTranslateIsOk(String transText) {
-        boolean result = transText.equalsIgnoreCase(getText(enterTranslate));
-        System.out.println("Слово " + transText + " переведено: " + result);
-    }
-
-     */
-
 }

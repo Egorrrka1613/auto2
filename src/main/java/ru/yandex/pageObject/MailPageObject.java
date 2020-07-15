@@ -109,14 +109,10 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//div[text() = 'В папке «Входящие» нет писем.']")
     private WebElement checkNoLetter;
 
-    /*
-    @FindBy(xpath = ".//span[@class = 'mail-MessageSnippet-Item mail-MessageSnippet-Item_sender js-message-snippet-sender']")
-    private WebElement enterTranslate;
-     */
+
 
     /**
      * В этом методе водим логин
-     *
      * @param text
      */
 
@@ -166,9 +162,7 @@ public class MailPageObject extends Base {
      */
 
     @Step("Нажимаем \"Написать\" в ЛК почты")
-    public void clickWriteLetter() {
-        click(writeLetter);
-    }
+    public void clickWriteLetter() { click(writeLetter); }
 
     /**
      * В этом методе проверяем наличие формы создания письма.
@@ -177,13 +171,12 @@ public class MailPageObject extends Base {
     @Step("Проверяем наличие формы создания нового письма")
     public void checkWindowNewLetter() {
         //assertTrue(getDriver().findElement(By.xpath(xpath)).getText().contains("Новое письмо")); --- недописаная попытка проверки окошка новго пиьсьма с использованием JUnit
-
         try {
             getText(windowNewLetter);
+            System.out.println("Форма найдена");
         } catch (NoSuchElementException e) {
             System.out.println("Форма не найдена");
         }
-        System.out.println("Форма найдена");
     }
 
     /**
@@ -233,7 +226,6 @@ public class MailPageObject extends Base {
     @Step("Загружаем файл к письму")
     public void setUploadFile() {
         setText(uploadFile, "C:\\dowonlad\\autoTest\\attach\\file.txt");
-
     }
 
     /**
@@ -269,14 +261,14 @@ public class MailPageObject extends Base {
 
     @Step("Проверяем наличие письма, с указанной темой")
     public void findLetterSubject(String subjectLetter) {
+        String xpath = ".//span[@title = '" + subjectLetter + "']/..";
         try {
-            String xpath = ".//span[@title = '" + subjectLetter + "']/..";
             click(xpath);
+            System.out.println("Письмо с указанной темой присутствует");
             //.//span[@title = '163fa291-0e2a-4749-9494-29f0ce7b70bb'] --- xpath для проверки темы
-        } catch (UnreachableBrowserException e) {
+        } catch ( TimeoutException u) {
             System.out.println("Письмо с указанной темой отсутствует");
         }
-        System.out.println("Письмо с указанной темой присутствует");
     }
 
     /**
@@ -285,7 +277,6 @@ public class MailPageObject extends Base {
 
     @Step("Открываем принятое письмо")
     public void clickReceiveLetter() {
-
         click(receiveLetter);
     }
 
@@ -296,10 +287,10 @@ public class MailPageObject extends Base {
     @Step("Сравнение темм писем")
     public void compareLetterSubject(String text) {
         String letterSubjectValueInBoxStr = getText(letterSubjectValueInBox);
-        if (text.equals(letterSubjectValueInBoxStr))
+        if (text.equals(letterSubjectValueInBoxStr)) {
             System.out.println("Темы сравниваемых писем равны");
+        }
         else System.out.println("Темы сравниваемых писем не равны");
-
     }
 
     /**
@@ -411,7 +402,7 @@ public class MailPageObject extends Base {
     @Step("Выбираем подпись для письма")
     public void findSignLetter(String signLetterVal) {
         String xpath = "//div[contains(., '" + signLetterVal + "') and @class = 'SignaturesPopupMenu-Text']";
-        ////div[contains(., 'L1WMnuVp') and @class = 'SignaturesPopupMenu-Text'] -- хпас для проверки на странице
+        //.//div[contains(., 'L1WMnuVp') and @class = 'SignaturesPopupMenu-Text'] -- хпас для проверки на странице
         click(xpath);
 
         System.out.println("Созданная подпись выбрана для письма");

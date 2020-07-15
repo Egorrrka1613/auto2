@@ -38,6 +38,7 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.setEnterPassword("010203QAZ");
         test1.clickEnterPasswordComplate();
         System.out.println("Авторизация прошла");
+
         test1.clickWriteLetter();
         test1.checkWindowNewLetter();
         test1.setAddresser("testerawto@yandex.ru");
@@ -102,7 +103,6 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1.clickInboxLetterButton();
         test1.clickButtonChooseAllLetters();
         test1.clickButtonDeleteLetter();
-        test1.clickConfirmDelete();
         test1.checkExistAnyLetter();
         System.out.println("Тест закончен");
 

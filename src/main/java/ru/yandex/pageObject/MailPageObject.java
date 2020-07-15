@@ -71,7 +71,7 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//a[@class = 'mail-File-Actions-Item js-skip-click-message-item js-attachment-actions-item js-download-attachment mail-File-Actions-Item_secondary']")
     private WebElement buttonDowonladAttach;
 
-    @FindBy (xpath = ".//button [@class = 'control button2 button2_view_classic button2_theme_default mail-GhostButton mail-SettingsButton']")
+    @FindBy(xpath = ".//button [@class = 'control button2 button2_view_classic button2_theme_default mail-GhostButton mail-SettingsButton']")
     private WebElement buttonSetting;
 
     @FindBy(xpath = ".//a [@class = 'mail-SettingsPopup__menu-item' and @href = '#setup/sender']")
@@ -107,6 +107,9 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//div[@class = 'ns-view-container-desc mail-MessagesList js-messages-list']/div[1]")
     private WebElement existAnyLetter;
 
+    @FindBy(xpath = ".//div[text() = 'В папке «Входящие» нет писем.']")
+    private WebElement checkNoLetter;
+
 
 
 
@@ -117,6 +120,7 @@ public class MailPageObject extends Base {
 
     /**
      * В этом методе водим логин
+     *
      * @param text
      */
 
@@ -129,7 +133,7 @@ public class MailPageObject extends Base {
      * Кликаем по кнопке "Войти" на стартовом экране "Яндекс Почты".
      */
 
-    @Step ("Кликаем по кнопке \"Войти\" указывая наличие зарегестрированного почтового ящика.")
+    @Step("Кликаем по кнопке \"Войти\" указывая наличие зарегестрированного почтового ящика.")
     public void clickComeGmail() {
         click(comeGmail);
     }
@@ -138,7 +142,7 @@ public class MailPageObject extends Base {
      * Кликаем по "Войти" после ввода логина.
      */
 
-    @Step ("Кликаем по \"Войти\" после ввода логина.")
+    @Step("Кликаем по \"Войти\" после ввода логина.")
     public void clickEnterLoginComplate() {
         click(enterLoginComplate);
     }
@@ -147,7 +151,7 @@ public class MailPageObject extends Base {
      * В этом методе вводим пароль.
      */
 
-    @Step ("В этом методе вводим пароль.")
+    @Step("В этом методе вводим пароль.")
     public void setEnterPassword(String text) {
         setText(enterPassword, text);
     }
@@ -156,7 +160,7 @@ public class MailPageObject extends Base {
      * В этом методе кликаем "Войти" после ввода пароля.
      */
 
-    @Step ("Кликаем \"Войти\", после ввода пароля.")
+    @Step("Кликаем \"Войти\", после ввода пароля.")
     public void clickEnterPasswordComplate() {
         click(enterPasswordComplate);
     }
@@ -165,15 +169,17 @@ public class MailPageObject extends Base {
      * В этом методе нажимаем "Написать письмо".
      */
 
-    @Step ("Нажимаем \"Написать\" в ЛК почты")
-    public void clickWriteLetter() { click(writeLetter); }
+    @Step("Нажимаем \"Написать\" в ЛК почты")
+    public void clickWriteLetter() {
+        click(writeLetter);
+    }
 
     /**
      * В этом методе проверяем наличие формы создания письма.
      */
 
-    @Step ("Проверяем наличие формы создания нового письма")
-    public void checkWindowNewLetter(){
+    @Step("Проверяем наличие формы создания нового письма")
+    public void checkWindowNewLetter() {
         //assertTrue(getDriver().findElement(By.xpath(xpath)).getText().contains("Новое письмо")); --- недописаная попытка проверки окошка новго пиьсьма с использованием JUnit
 
         try {
@@ -189,21 +195,27 @@ public class MailPageObject extends Base {
      */
 
     @Step("Указываем поле для ввода адреса письма")
-    public void setAddresser (String text) {setText(addresser, text);}
+    public void setAddresser(String text) {
+        setText(addresser, text);
+    }
 
     /**
      * В этом методе указываем тему письма
      */
 
     @Step("Указываем тему письма")
-    public void setLetterSubject (String text) {setText(letterSubject, text);}
+    public void setLetterSubject(String text) {
+        setText(letterSubject, text);
+    }
 
     /**
      * В этом методе пишем текст письма
      */
 
     @Step("Пишем текст письма")
-    public void writeTextLetter (String text) {setText(textLetter, text);}
+    public void writeTextLetter(String text) {
+        setText(textLetter, text);
+    }
 
     /**
      * В этом методе создаем файл, для прикрепления к письму
@@ -213,19 +225,18 @@ public class MailPageObject extends Base {
     public void fileNewCreate() {
         try {
             new File("C:/dowonlad/autoTest/attach/file.txt").createNewFile();
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
     /**
-     *  В этом методе загружаем файл к письму, после загрузки удаляем файл
+     * В этом методе загружаем файл к письму, после загрузки удаляем файл
      */
 
     @Step("Загружаем файл к письму")
     public void setUploadFile() {
-        setText(uploadFile,"C:\\dowonlad\\autoTest\\attach\\file.txt");
+        setText(uploadFile, "C:\\dowonlad\\autoTest\\attach\\file.txt");
 
     }
 
@@ -252,20 +263,21 @@ public class MailPageObject extends Base {
      */
 
     @Step("Нажимаем \"Проверить, есть ли новые письма \"")
-    public void clickRefreshGmail() {click(refreshMail);}
+    public void clickRefreshGmail() {
+        click(refreshMail);
+    }
 
     /**
-     *  В этом методе кликаем по письму с указанной темой
+     * В этом методе кликаем по письму с указанной темой
      */
 
     @Step("Проверяем наличие письма, с указанной темой")
     public void findLetterSubject(String subjectLetter) {
         try {
-            String xpath = ".//span[@title = '" + subjectLetter + "']";
+            String xpath = ".//span[@title = '" + subjectLetter + "']/..";
             click(xpath);
             //.//span[@title = '163fa291-0e2a-4749-9494-29f0ce7b70bb'] --- xpath для проверки темы
-        }
-        catch (UnreachableBrowserException e) {
+        } catch (UnreachableBrowserException e) {
             System.out.println("Письмо с указанной темой отсутствует");
         }
         System.out.println("Письмо с указанной темой присутствует");
@@ -275,7 +287,7 @@ public class MailPageObject extends Base {
      * В этом методе открываем принятое письмо
      */
 
-    @Step ("Открываем принятое письмо")
+    @Step("Открываем принятое письмо")
     public void clickReceiveLetter() {
 
         click(receiveLetter);
@@ -285,8 +297,8 @@ public class MailPageObject extends Base {
      * Метод для сравнения темы писем
      */
 
-    @Step ("Сравнение темм писем")
-    public void compareLetterSubject (String text) {
+    @Step("Сравнение темм писем")
+    public void compareLetterSubject(String text) {
         String letterSubjectValueInBoxStr = getText(letterSubjectValueInBox);
         if (text.equals(letterSubjectValueInBoxStr))
             System.out.println("Темы сравниваемых писем равны");
@@ -299,7 +311,7 @@ public class MailPageObject extends Base {
      */
 
     @Step("Сравнение текста писем")
-    public void compareLetterText (String text) {
+    public void compareLetterText(String text) {
         String textLetterInBoxStr = getText(textLetterInBox);
         if (text.equals(textLetterInBoxStr))
             System.out.println("Тексты сравниваемых писем равны");
@@ -321,8 +333,7 @@ public class MailPageObject extends Base {
             System.out.println("Файл присутствует в директории загрузки");
             new File("C:/Users/Егор/Downloads/file.txt").delete();
             new File("C:/dowonlad/autoTest/attach/file.txt").delete();
-        }
-        else
+        } else
             System.out.println("Файл отсутствует в директории загрузки");
     }
 
@@ -340,14 +351,16 @@ public class MailPageObject extends Base {
      */
 
     @Step("Кликаем по копке \"Персональые данные, подпись, портрет\"")
-    public void clickPersonalDataAndSignature() {click(personalDataAndSignature);}
+    public void clickPersonalDataAndSignature() {
+        click(personalDataAndSignature);
+    }
 
     /**
      * В этом методе вводим новую подпись
      */
 
     @Step("Вводим в поле подписи переданное значение")
-    public void setSignatureField (String text) {
+    public void setSignatureField(String text) {
         setText(signatureField, text);
     }
 
@@ -356,14 +369,18 @@ public class MailPageObject extends Base {
      */
 
     @Step("Кликаем по конпке \"Добавить подпись\"")
-    public void clickButtonAddSignature() {click(buttonAddSignature);}
+    public void clickButtonAddSignature() {
+        click(buttonAddSignature);
+    }
 
     /**
      * В этом методе возвращаемся в почту, после смены подписи
      */
 
     @Step("Переходим в почту, из меню настроек")
-    public void clickButtonToGmail() {click(buttonToGmail);}
+    public void clickButtonToGmail() {
+        click(buttonToGmail);
+    }
 
     /**
      * В этом методе открываем меню выбора подписи для письма
@@ -385,8 +402,7 @@ public class MailPageObject extends Base {
             String xpath = "//div[contains(., '" + signLetterVal + "') and @class = 'SignaturesPopupMenu-Text']";
             ////div[contains(., 'L1WMnuVp') and @class = 'SignaturesPopupMenu-Text'] -- хпас для проверки на странице
             click(xpath);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Указанная подпись не найдена");
         }
         System.out.println("Созданная подпись выбрана для письма");
@@ -402,7 +418,7 @@ public class MailPageObject extends Base {
     }
 
     /**
-     *  В этом методе кликаем по чекбоксу, для выбора всех писем в почте
+     * В этом методе кликаем по чекбоксу, для выбора всех писем в почте
      */
 
     @Step("Выделяем все письма в почте")
@@ -430,19 +446,22 @@ public class MailPageObject extends Base {
 
     /**
      * В этом методе проверяем отсутствие писем в почте
+     *
      * @return
      */
 
     @Step("Проверяем отсутствие писем в почте")
-    public boolean checkExistAnyLetter() {
-        Boolean elementCondition = false;
-        try {
-            elementCondition = getDriver().findElement(By.xpath(".//div[@class = 'ns-view-container-desc mail-MessagesList js-messages-list']/div[1]")).isDisplayed();        }
-        catch (Exception e) {
-            System.out.println("В почтовом ящике письма отсутствуют");
-            return elementCondition;
+    public void checkExistAnyLetter() {
+
+        Boolean isPresent = getDriver().findElements(By.xpath(".//div[@class = 'ns-view-container-desc mail-MessagesList js-messages-list']/div[1]")).size() > 0;
+        isPresent.toString();
+        //System.out.println("Результат удаления писем: " + isPresent);
+
+        if (isPresent == false) {
+            System.out.println("Письма удалены");
         }
-        return elementCondition;
+        else
+            System.out.println("Письма присутсвуют в почтовом ящике");
     }
 
 
@@ -458,4 +477,5 @@ public class MailPageObject extends Base {
     }
 
      */
+
 }

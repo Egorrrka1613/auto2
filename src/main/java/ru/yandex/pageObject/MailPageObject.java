@@ -1,8 +1,8 @@
 package ru.yandex.pageObject;
 
 import io.qameta.allure.Step;
+import org.junit.Assert;
 import org.openqa.selenium.*;
-import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.Base;
 import java.io.File;
@@ -19,13 +19,13 @@ public class MailPageObject extends Base {
     @FindBy(xpath = ".//a[@class = 'button2 button2_size_mail-big button2_theme_mail-white button2_type_link HeadBanner-Button HeadBanner-Button-Enter with-shadow']")
     private WebElement comeGmail;
 
-    @FindBy(xpath = ".//*[@name=\"login\"]")
+    @FindBy(xpath = ".//*[@name='login']")
     private WebElement enterLogin;
 
     @FindBy(xpath = ".//div[@class = 'passp-button passp-sign-in-button']/button[@type = 'submit']")
     private WebElement enterLoginComplate;
 
-    @FindBy(xpath = ".//*[@name=\"passwd\"]")
+    @FindBy(xpath = ".//*[@name='passwd']")
     private WebElement enterPassword;
 
     @FindBy(xpath = ".//div[@class = 'passp-button passp-sign-in-button']/button[@type = 'submit']")
@@ -446,7 +446,6 @@ public class MailPageObject extends Base {
 
     /**
      * В этом методе проверяем отсутствие писем в почте
-     *
      * @return
      */
 

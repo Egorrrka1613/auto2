@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import ru.google.Browser;
+import ru.yandex.Browser;
 
 import java.net.MalformedURLException;
 import java.net.URL;

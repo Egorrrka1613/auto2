@@ -29,8 +29,6 @@ public class AutorizationMailPageObject extends Base {
     @FindBy(xpath = ".//div[@class = 'passp-button passp-sign-in-button']/button[@type = 'submit']")
     private WebElement enterPasswordComplate;
 
-
-
     /**
      * В этом методе водим логин
      * @param text

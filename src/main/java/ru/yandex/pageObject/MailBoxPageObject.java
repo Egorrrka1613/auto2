@@ -30,7 +30,7 @@ public class MailBoxPageObject extends Base {
   @FindBy(xpath = ".//button[@class = 'control button2 button2_view_default button2_tone_default button2_size_l button2_theme_action button2_pin_circle-circle ComposeControlPanelButton-Button ComposeControlPanelButton-Button_action']")
   private WebElement sendLetter;
 
-  @FindBy(xpath = ".//div[@class='cke_wysiwyg_div cke_reset cke_enable_context_menu cke_editable cke_editable_themed cke_contents_ltr']")
+  @FindBy(xpath = ".//div[@role='textbox']")
   private WebElement textLetter;
 
   @FindBy(xpath = ".//a[@class = 'control link link_theme_normal ComposeDoneScreen-Link' and @href = '#inbox']")
@@ -50,21 +50,6 @@ public class MailBoxPageObject extends Base {
 
   @FindBy(xpath = ".//a[@class = 'mail-File-Actions-Item js-skip-click-message-item js-attachment-actions-item js-download-attachment mail-File-Actions-Item_secondary']")
   private WebElement buttonDowonladAttach;
-
-  @FindBy(xpath = ".//button [@class = 'control button2 button2_view_classic button2_theme_default mail-GhostButton mail-SettingsButton']")
-  private WebElement buttonSetting;
-
-  @FindBy(xpath = ".//a [@class = 'mail-SettingsPopup__menu-item' and @href = '#setup/sender']")
-  private WebElement personalDataAndSignature;
-
-  @FindBy(xpath = ".//div [@class ='cke_wysiwyg_div cke_reset cke_enable_context_menu cke_editable cke_editable_themed cke_contents_ltr']")
-  private WebElement signatureField;
-
-  @FindBy(xpath = ".//span [@class = 'ui-button-text']/..")
-  private WebElement buttonAddSignature;
-
-  @FindBy(xpath = ".//a [@class = 'b-setup-title__link' and @href = '#inbox']")
-  private WebElement buttonToGmail;
 
   @FindBy(xpath = ".//div[@class = 'ComposeReact-SignatureContainer']")
   private WebElement signList;
@@ -281,55 +266,6 @@ public class MailBoxPageObject extends Base {
     new File("C:/dowonlad/autoTest/attach/file.txt").delete();
   }
 
-  /**
-   * В этом методе кликаем по кнопке "Настройки"
-   */
-
-  @Step("Кликаем по кнопке настройки")
-  public void clickButtonSetting() {
-    click(buttonSetting);
-    System.out.println("Кликнули по \"Настройки\"");
-  }
-
-  /**
-   * В этом методе клаикаем по кнопке "Персональные данные, подпись, портрет"
-   */
-
-  @Step("Кликаем по копке \"Персональые данные, подпись, портрет\"")
-  public void clickPersonalDataAndSignature() {
-    click(personalDataAndSignature);
-    System.out.println("Кликнули по \"Личные данные, подпись, портрет\"");
-  }
-
-  /**
-   * В этом методе вводим новую подпись
-   */
-
-  @Step("Вводим в поле подписи переданное значение")
-  public void setSignatureField(String text) {
-    setText(signatureField, text);
-    System.out.println("Ввели новый текст подписи");
-  }
-
-  /**
-   * В этом методе кликаем по кнопке "Добавить подпись"
-   */
-
-  @Step("Кликаем по конпке \"Добавить подпись\"")
-  public void clickButtonAddSignature() {
-    click(buttonAddSignature);
-    System.out.println("Добавили новую подпись");
-  }
-
-  /**
-   * В этом методе возвращаемся в почту, после смены подписи
-   */
-
-  @Step("Переходим в почту, из меню настроек")
-  public void clickButtonToGmail() {
-    click(buttonToGmail);
-    System.out.println("Вернулись из настроек в почтовый ящик");
-  }
 
   /**
    * В этом методе открываем меню выбора подписи для письма

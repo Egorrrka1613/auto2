@@ -60,12 +60,12 @@ public class AutorizationGmail extends ChromeBaseTest {
         //test1Autorization.deleteDowonladAttach();
         //test1Autorization.deleteCreateAttach();
         //System.out.println("Удалили файлы атачей");
-        test1Mail.clickButtonSetting();
-        test1Mail.clickPersonalDataAndSignature();
+        test1Settin.clickButtonSetting();
+        test1Settin.clickPersonalDataAndSignature();
         String signatureGenerateValue1 = signatureGenerate(); // Переменая с подписью письма
-        test1Mail.setSignatureField(signatureGenerateValue1);
-        test1Mail.clickButtonAddSignature();
-        test1Mail.clickButtonToGmail();
+        test1Settin.setSignatureField(signatureGenerateValue1);
+        test1Settin.clickButtonAddSignature();
+        test1Settin.clickButtonToGmail();
         test1Mail.clickWriteLetter();
         test1Mail.checkWindowNewLetter();
         test1Mail.setAddresser("testerawto@yandex.ru");

@@ -8,7 +8,10 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import ru.yandex.pageObject.MailPageObject;
+import ru.yandex.pageObject.AutorizationMailPageObject;
+import ru.yandex.pageObject.MailBoxPageObject;
+import ru.yandex.pageObject.SettingMailBobPageObject;
+
 import testClass.ChromeBaseTest;
 
 import static ru.yandex.RandomStringGenerator.*;
@@ -26,80 +29,85 @@ public class AutorizationGmail extends ChromeBaseTest {
 
     public void startTest() throws InterruptedException {
         toURL("https://mail.yandex.ru/?noretpath=1");
-        MailPageObject test1 = new MailPageObject(getDriver());
-        test1.clickComeGmail();
-        test1.setEnterLogin("testerawto");
-        test1.clickEnterLoginComplate();
-        test1.setEnterPassword("010203QAZ");
-        test1.clickEnterPasswordComplate();
+        AutorizationMailPageObject test1Autorization = new AutorizationMailPageObject(getDriver());
+        MailBoxPageObject test1Mail = new MailBoxPageObject(getDriver());
+        SettingMailBobPageObject test1Settin = new SettingMailBobPageObject(getDriver());
+
+        test1Autorization.clickComeGmail();
+        test1Autorization.setEnterLogin("testerawto");
+        test1Autorization.clickEnterLoginComplate();
+        test1Autorization.setEnterPassword("010203QAZ");
+        test1Autorization.clickEnterPasswordComplate();
         System.out.println("Авторизация прошла");
-        test1.clickWriteLetter();
-        test1.checkWindowNewLetter();
-        test1.setAddresser("testerawto@yandex.ru");
+
+        test1Mail.clickWriteLetter();
+        test1Mail.checkWindowNewLetter();
+        test1Mail.setAddresser("testerawto@yandex.ru");
         String letterSubjectValue1 = letterSubject(); // Переменная с темой первого письма
-        test1.setLetterSubject(letterSubjectValue1);
+        test1Mail.setLetterSubject(letterSubjectValue1);
         String textLetterChoiceValue1 = textLetterChoice(); // Переменная с текстом первого письма
-        test1.writeTextLetter(textLetterChoiceValue1);
-        test1.fileNewCreate();
-        System.out.println("Создан файл аттача");
-        test1.setUploadFile();
-        Thread.sleep(3000); //Ожидание для загрузки файла
-        test1.clickSendLetter();
-        System.out.println("Отправили письмо");
-        test1.clickReturnToInBox();
-        System.out.println("Вернулись во входящие");
-        test1.clickRefreshGmail();
-        System.out.println("Почтовый ящик обновлен");
-        test1.findLetterSubject(letterSubjectValue1);
-        System.out.println("Новое письмо найдено");
-        test1.clickReceiveLetter();
-        System.out.println("Переход во входящее письмо выполнен");
-        test1.compareLetterSubject(letterSubjectValue1);
-        test1.compareLetterText(textLetterChoiceValue1);
-        test1.dowonladCheckAttach();
-        test1.deleteDowonladAttach();
-        test1.deleteCreateAttach();
-        System.out.println("Удалили файлы атачей");
-        test1.clickButtonSetting();
-        System.out.println("Кликнули по \"Настройки\"");
-        test1.clickPersonalDataAndSignature();
-        System.out.println("Кликнули по \"Личные данные, подпись, портрет\"");
+        test1Mail.writeTextLetter(textLetterChoiceValue1);
+        //test1Autorization.fileNewCreate();
+        //System.out.println("Создан файл аттача");
+        //test1Autorization.setUploadFile();
+        //Thread.sleep(3000); //Ожидание для загрузки файла
+        test1Mail.clickSendLetter();
+
+        test1Mail.clickReturnToInBox();
+
+        test1Mail.clickRefreshGmail();
+
+        test1Mail.findLetterSubject(letterSubjectValue1);
+
+        test1Mail.clickReceiveLetter();
+
+        test1Mail.compareLetterSubject(letterSubjectValue1);
+        test1Mail.compareLetterText(textLetterChoiceValue1);
+        //test1Autorization.dowonladCheckAttach();
+        //test1Autorization.deleteDowonladAttach();
+        //test1Autorization.deleteCreateAttach();
+        //System.out.println("Удалили файлы атачей");
+        test1Mail.clickButtonSetting();
+
+        test1Mail.clickPersonalDataAndSignature();
+
         String signatureGenerateValue1 = signatureGenerate(); // Переменая с подписью письма
-        test1.setSignatureField(signatureGenerateValue1);
-        System.out.println("Ввели новый текст подписи");
-        test1.clickButtonAddSignature();
-        System.out.println("Добавили новую подпись");
-        test1.clickButtonToGmail();
-        System.out.println("Вернулись из настроек в почтовый ящик");
-        test1.clickWriteLetter();
-        test1.checkWindowNewLetter();
-        test1.setAddresser("testerawto@yandex.ru");
+        test1Mail.setSignatureField(signatureGenerateValue1);
+
+        test1Mail.clickButtonAddSignature();
+
+        test1Mail.clickButtonToGmail();
+
+        test1Mail.clickWriteLetter();
+        test1Mail.checkWindowNewLetter();
+        test1Mail.setAddresser("testerawto@yandex.ru");
         String letterSubjectValue2 = letterSubject();; //Генерируем вторую тему письма и записываем в новую переменную
-        test1.setLetterSubject(letterSubjectValue2);
+        test1Mail.setLetterSubject(letterSubjectValue2);
         String textLetterChoiceValue2 = textLetterChoice(); //Генерируем текст второго письма
-        test1.writeTextLetter(textLetterChoiceValue2);
-        test1.fileNewCreate();
-        System.out.println("Создан файл аттача");
-        test1.setUploadFile();
-        Thread.sleep(3000);
-        test1.deleteCreateAttach();
-        test1.clickSignList();
-        test1.findSignLetter(signatureGenerateValue1);
-        test1.clickSendLetter();
-        test1.clickReturnToInBox();
-        System.out.println("Вернулись во входящие");
-        test1.clickRefreshGmail();
-        System.out.println("Почтовый ящик обновлен");
-        test1.findLetterSubject(letterSubjectValue2);
-        System.out.println("Второе письмо найдено");
-        test1.clickReceiveLetter();
-        System.out.println("Переход во входящее письмо выполнен");
-        test1.compareLetterSubject(letterSubjectValue2);
-        test1.compareLetterText(textLetterChoiceValue2);
+        test1Mail.writeTextLetter(textLetterChoiceValue2);
+        //test1Autorization.fileNewCreate();
+        //System.out.println("Создан файл аттача");
+        //test1Autorization.setUploadFile();
+        //Thread.sleep(3000);
+        //test1Autorization.deleteCreateAttach();
+        test1Mail.clickSignList();
+        test1Mail.findSignLetter(signatureGenerateValue1);
+        test1Mail.clickSendLetter();
+        test1Mail.clickReturnToInBox();
+
+        test1Mail.clickRefreshGmail();
+
+        test1Mail.findLetterSubject(letterSubjectValue2);
+
+        test1Mail.clickReceiveLetter();
+
+        test1Mail.compareLetterSubject(letterSubjectValue2);
+        test1Mail.compareLetterText(textLetterChoiceValue2);
         Assert.assertTrue(driver.findElement(By.xpath(".//div[@class = 'js-message-body-content mail-Message-Body-Content']/div[4]")).getText().contains(signatureGenerateValue1));
-        test1.clickInboxLetterButton();
-        test1.clickButtonChooseAllLetters();
-        test1.clickButtonDeleteLetter();
-        test1.checkExistAnyLetter();
+        test1Mail.clickInboxLetterButton();
+        test1Mail.clickButtonChooseAllLetters();
+        test1Mail.clickButtonDeleteLetter();
+        test1Mail.checkExistAnyLetter();
+        
     }
 }

@@ -12,5 +12,3 @@ buildNumber.properties
 # IntelliJ:
 .idea/
 *.iml
-# Maven:
-target/

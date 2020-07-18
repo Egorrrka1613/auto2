@@ -32,14 +32,12 @@ public class AutorizationGmail extends ChromeBaseTest {
         AutorizationMailPageObject test1Autorization = new AutorizationMailPageObject(getDriver());
         MailBoxPageObject test1Mail = new MailBoxPageObject(getDriver());
         SettingMailBobPageObject test1Settin = new SettingMailBobPageObject(getDriver());
-
         test1Autorization.clickComeGmail();
         test1Autorization.setEnterLogin("testerawto");
         test1Autorization.clickEnterLoginComplate();
         test1Autorization.setEnterPassword("010203QAZ");
         test1Autorization.clickEnterPasswordComplate();
         System.out.println("Авторизация прошла");
-
         test1Mail.clickWriteLetter();
         test1Mail.checkWindowNewLetter();
         test1Mail.setAddresser("testerawto@yandex.ru");
@@ -52,15 +50,10 @@ public class AutorizationGmail extends ChromeBaseTest {
         //test1Autorization.setUploadFile();
         //Thread.sleep(3000); //Ожидание для загрузки файла
         test1Mail.clickSendLetter();
-
         test1Mail.clickReturnToInBox();
-
         test1Mail.clickRefreshGmail();
-
         test1Mail.findLetterSubject(letterSubjectValue1);
-
         test1Mail.clickReceiveLetter();
-
         test1Mail.compareLetterSubject(letterSubjectValue1);
         test1Mail.compareLetterText(textLetterChoiceValue1);
         //test1Autorization.dowonladCheckAttach();
@@ -68,16 +61,11 @@ public class AutorizationGmail extends ChromeBaseTest {
         //test1Autorization.deleteCreateAttach();
         //System.out.println("Удалили файлы атачей");
         test1Mail.clickButtonSetting();
-
         test1Mail.clickPersonalDataAndSignature();
-
         String signatureGenerateValue1 = signatureGenerate(); // Переменая с подписью письма
         test1Mail.setSignatureField(signatureGenerateValue1);
-
         test1Mail.clickButtonAddSignature();
-
         test1Mail.clickButtonToGmail();
-
         test1Mail.clickWriteLetter();
         test1Mail.checkWindowNewLetter();
         test1Mail.setAddresser("testerawto@yandex.ru");
@@ -94,13 +82,9 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1Mail.findSignLetter(signatureGenerateValue1);
         test1Mail.clickSendLetter();
         test1Mail.clickReturnToInBox();
-
         test1Mail.clickRefreshGmail();
-
         test1Mail.findLetterSubject(letterSubjectValue2);
-
         test1Mail.clickReceiveLetter();
-
         test1Mail.compareLetterSubject(letterSubjectValue2);
         test1Mail.compareLetterText(textLetterChoiceValue2);
         Assert.assertTrue(driver.findElement(By.xpath(".//div[@class = 'js-message-body-content mail-Message-Body-Content']/div[4]")).getText().contains(signatureGenerateValue1));
@@ -108,6 +92,6 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1Mail.clickButtonChooseAllLetters();
         test1Mail.clickButtonDeleteLetter();
         test1Mail.checkExistAnyLetter();
-        
+
     }
 }

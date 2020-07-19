@@ -45,10 +45,10 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1Mail.setLetterSubject(letterSubjectValue1);
         String textLetterChoiceValue1 = textLetterChoice(); // Переменная с текстом первого письма
         test1Mail.writeTextLetter(textLetterChoiceValue1);
-        //test1Autorization.fileNewCreate();
-        //System.out.println("Создан файл аттача");
-        //test1Autorization.setUploadFile();
-        //Thread.sleep(3000); //Ожидание для загрузки файла
+        test1Mail.fileNewCreate();
+        System.out.println("Создан файл аттача");
+        test1Mail.setUploadFile();
+        Thread.sleep(3000); //Ожидание для загрузки файла
         test1Mail.clickSendLetter();
         test1Mail.clickReturnToInBox();
         test1Mail.clickRefreshGmail();
@@ -58,7 +58,7 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1Mail.compareLetterText(textLetterChoiceValue1);
         //test1Autorization.dowonladCheckAttach();
         //test1Autorization.deleteDowonladAttach();
-        //test1Autorization.deleteCreateAttach();
+        test1Mail.deleteCreateAttach();
         //System.out.println("Удалили файлы атачей");
         test1Settin.clickButtonSetting();
         test1Settin.clickPersonalDataAndSignature();
@@ -73,11 +73,11 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1Mail.setLetterSubject(letterSubjectValue2);
         String textLetterChoiceValue2 = textLetterChoice(); //Генерируем текст второго письма
         test1Mail.writeTextLetter(textLetterChoiceValue2);
-        //test1Autorization.fileNewCreate();
-        //System.out.println("Создан файл аттача");
-        //test1Autorization.setUploadFile();
-        //Thread.sleep(3000);
-        //test1Autorization.deleteCreateAttach();
+        test1Mail.fileNewCreate();
+        System.out.println("Создан файл аттача");
+        test1Mail.setUploadFile();
+        Thread.sleep(3000);
+        test1Mail.deleteCreateAttach();
         test1Mail.clickSignList();
         test1Mail.findSignLetter(signatureGenerateValue1);
         test1Mail.clickSendLetter();

@@ -58,7 +58,6 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1Mail.dowonladCheckAttach();
         //test1Autorization.deleteDowonladAttach();
         test1Mail.deleteCreateAttach();
-        //System.out.println("Удалили файлы атачей");
         test1Settin.clickButtonSetting();
         test1Settin.clickPersonalDataAndSignature();
         String signatureGenerateValue1 = signatureGenerate(); // Переменая с подписью письма

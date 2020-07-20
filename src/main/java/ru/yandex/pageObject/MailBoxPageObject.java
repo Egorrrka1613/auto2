@@ -269,6 +269,7 @@ public class MailBoxPageObject extends Base {
   @Step("Удаляем созданный аттач файла")
   public void deleteCreateAttach() {
     new File("src/main/resources/file.txt").delete();
+    System.out.println("Удалил файл атача");
   }
 
 

@@ -46,7 +46,6 @@ public class AutorizationGmail extends ChromeBaseTest {
         String textLetterChoiceValue1 = textLetterChoice(); // Переменная с текстом первого письма
         test1Mail.writeTextLetter(textLetterChoiceValue1);
         test1Mail.fileNewCreate();
-        System.out.println("Создан файл аттача");
         test1Mail.setUploadFile();
         Thread.sleep(3000); //Ожидание для загрузки файла
         test1Mail.clickSendLetter();
@@ -56,7 +55,7 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1Mail.clickReceiveLetter();
         test1Mail.compareLetterSubject(letterSubjectValue1);
         test1Mail.compareLetterText(textLetterChoiceValue1);
-        //test1Autorization.dowonladCheckAttach();
+        test1Mail.dowonladCheckAttach();
         //test1Autorization.deleteDowonladAttach();
         test1Mail.deleteCreateAttach();
         //System.out.println("Удалили файлы атачей");
@@ -92,6 +91,5 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1Mail.clickButtonChooseAllLetters();
         test1Mail.clickButtonDeleteLetter();
         test1Mail.checkExistAnyLetter();
-
     }
 }

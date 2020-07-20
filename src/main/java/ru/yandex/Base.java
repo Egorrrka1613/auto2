@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+
 public class Base {
     private WebDriver driver;
     private int waitTime = 7;
@@ -84,5 +86,12 @@ public class Base {
     public void setText(WebElement element, String text) {
         waitVisibilityElement(element);
         element.sendKeys(text);
+    }
+
+    public void setTextForAttach(WebElement element, String text) {
+        waitVisibilityElement(element);
+        text = "." + text;
+        //element.sendKeys(new File("./picturesfolder/pic1.jpg").getAbsolutePath());
+        element.sendKeys(new File(text).getAbsolutePath());
     }
 }

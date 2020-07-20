@@ -135,7 +135,8 @@ public class MailBoxPageObject extends Base {
   @Step("Создаем файл для прикрепления к письму")
   public void fileNewCreate() {
     try {
-      new File("C:/dowonlad/autoTest/attach/file.txt").createNewFile();
+      new File("src/main/resources/file.txt").createNewFile();
+      System.out.println("Создан файл аттача");
     } catch (IOException ex) {
       System.out.println(ex.getMessage());
     }
@@ -147,7 +148,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Загружаем файл к письму")
   public void setUploadFile() {
-    setText(uploadFile, "C:\\dowonlad\\autoTest\\attach\\file.txt");
+    setTextForAttach(uploadFile, "/src/main/resources/file.txt");
   }
 
   /**
@@ -241,11 +242,15 @@ public class MailBoxPageObject extends Base {
     click(buttonDowonladAttach);
     Thread.sleep(3000);
     System.out.println("Файл скачан");
+    /*
+    Условие для проверки наличия файла в директории загрузки
 
     if (new File("C:/Users/Егор/Downloads/file.txt").isFile()) {
       System.out.println("Файл присутствует в директории загрузки");
     } else
       System.out.println("Файл отсутствует в директории загрузки");
+
+     */
   }
 
   /**
@@ -263,7 +268,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Удаляем созданный аттач файла")
   public void deleteCreateAttach() {
-    new File("C:/dowonlad/autoTest/attach/file.txt").delete();
+    new File("src/main/resources/file.txt").delete();
   }
 
 

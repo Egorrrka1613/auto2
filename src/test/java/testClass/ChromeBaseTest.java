@@ -46,14 +46,16 @@ public class ChromeBaseTest {
                 }
             }
 
+            @Step("Действия после успешного окончания теста")
             @Override
             protected void succeeded(final Description description) {
-
+              System.out.println("Тест прошел успешно");
             }
 
+            @Step("Действия после падения теста")
             @Override
             protected void failed(final Throwable e, final Description description) {
-
+              System.out.println("Тест упал =(");
             }
 
         };

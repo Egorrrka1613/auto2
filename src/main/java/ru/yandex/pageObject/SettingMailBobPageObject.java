@@ -8,6 +8,7 @@ import ru.yandex.Base;
 
 public class SettingMailBobPageObject extends Base {
   public SettingMailBobPageObject (WebDriver driver) {super(driver);}
+
   @FindBy(xpath = ".//button [@class = 'control button2 button2_view_classic button2_theme_default mail-GhostButton mail-SettingsButton']")
   private WebElement buttonSetting;
 
@@ -72,5 +73,4 @@ public class SettingMailBobPageObject extends Base {
     click(buttonToGmail);
     System.out.println("Вернулись из настроек в почтовый ящик");
   }
-
 }

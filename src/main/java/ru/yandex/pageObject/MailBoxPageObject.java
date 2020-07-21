@@ -12,7 +12,7 @@ public class MailBoxPageObject extends Base {
 
   public MailBoxPageObject (WebDriver driver) {super(driver);}
 
-  @FindBy(xpath = "//a[@class = 'mail-ComposeButton js-main-action-compose']")
+  @FindBy(xpath = ".//a[@class = 'mail-ComposeButton js-main-action-compose']")
   private WebElement writeLetter;
 
   @FindBy(xpath = ".//div[@class = 'ComposePopup-Content']")
@@ -74,10 +74,6 @@ public class MailBoxPageObject extends Base {
 
   @FindBy(xpath = ".//div[text() = 'В папке «Входящие» нет писем.']")
   private WebElement checkNoLetter;
-
-  @Step("asd")
-  public void testtest() {  }
-
 
   /**
    * В этом методе нажимаем "Написать письмо".
@@ -346,7 +342,4 @@ public class MailBoxPageObject extends Base {
     else
       System.out.println("Письма удалены");
   }
-
-
-
 }

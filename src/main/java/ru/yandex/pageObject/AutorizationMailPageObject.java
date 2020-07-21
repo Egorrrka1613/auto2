@@ -14,20 +14,17 @@ public class AutorizationMailPageObject extends Base {
         super(driver);
     }
 
-    @FindBy(xpath = ".//a[@class = 'button2 button2_size_mail-big button2_theme_mail-white button2_type_link HeadBanner-Button HeadBanner-Button-Enter with-shadow']")
+    @FindBy(xpath = ".//*[contains(@class,'HeadBanner-Button-Enter with-shadow')]")
     private WebElement comeGmail;
 
     @FindBy(xpath = ".//*[@name='login']")
     private WebElement enterLogin;
 
-    @FindBy(xpath = ".//div[@class = 'passp-button passp-sign-in-button']/button[@type = 'submit']")
-    private WebElement enterLoginComplate;
+    @FindBy(xpath = ".//*[contains(@class,'Button2_size_auth-l') and @type = 'submit']")
+    private WebElement enterAuthorizationValue;
 
     @FindBy(xpath = ".//*[@name='passwd']")
     private WebElement enterPassword;
-
-    @FindBy(xpath = ".//div[@class = 'passp-button passp-sign-in-button']/button[@type = 'submit']")
-    private WebElement enterPasswordComplate;
 
     /**
      * В этом методе водим логин
@@ -54,7 +51,7 @@ public class AutorizationMailPageObject extends Base {
 
     @Step("Кликаем по \"Войти\" после ввода логина.")
     public void clickEnterLoginComplate() {
-        click(enterLoginComplate);
+        click(enterAuthorizationValue);
     }
 
     /**
@@ -72,7 +69,7 @@ public class AutorizationMailPageObject extends Base {
 
     @Step("Кликаем \"Войти\", после ввода пароля.")
     public void clickEnterPasswordComplate() {
-        click(enterPasswordComplate);
+        click(enterAuthorizationValue);
     }
 
 }

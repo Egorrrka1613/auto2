@@ -5,9 +5,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.Base;
 
-import java.io.File;
-import java.io.IOException;
-
 public class AutorizationMailPageObject extends Base {
 
     public AutorizationMailPageObject(WebDriver driver) {

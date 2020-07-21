@@ -7,15 +7,16 @@ import org.openqa.selenium.support.FindBy;
 import ru.yandex.Base;
 
 public class SettingMailBobPageObject extends Base {
+
   public SettingMailBobPageObject (WebDriver driver) {super(driver);}
 
-  @FindBy(xpath = ".//button [@class = 'control button2 button2_view_classic button2_theme_default mail-GhostButton mail-SettingsButton']")
+  @FindBy(xpath = ".//*[contains(@class,'mail-SettingsButton')]")
   private WebElement buttonSetting;
 
   @FindBy(xpath = ".//a [@class = 'mail-SettingsPopup__menu-item' and @href = '#setup/sender']")
   private WebElement personalDataAndSignature;
 
-  @FindBy(xpath = ".//div [@class ='cke_wysiwyg_div cke_reset cke_enable_context_menu cke_editable cke_editable_themed cke_contents_ltr']")
+  @FindBy(xpath = ".//*[contains(@class,'cke_editable_themed cke_contents_ltr')]")
   private WebElement signatureField;
 
   @FindBy(xpath = ".//span [@class = 'ui-button-text']/..")

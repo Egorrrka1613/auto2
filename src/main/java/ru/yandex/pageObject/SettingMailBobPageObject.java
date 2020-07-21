@@ -10,20 +10,20 @@ public class SettingMailBobPageObject extends Base {
 
   public SettingMailBobPageObject (WebDriver driver) {super(driver);}
 
-  @FindBy(xpath = ".//*[contains(@class,'mail-SettingsButton')]")
-  private WebElement buttonSetting;
+  @FindBy(xpath = ".//button [contains(@class,'mail-SettingsButton')]")
+  private WebElement settingButton;
 
-  @FindBy(xpath = ".//a [@class = 'mail-SettingsPopup__menu-item' and @href = '#setup/sender']")
-  private WebElement personalDataAndSignature;
+  @FindBy(xpath = ".//a[@class = 'mail-SettingsPopup__menu-item' and @href = '#setup/sender']")
+  private WebElement personalDataAndSignatureLink;
 
-  @FindBy(xpath = ".//*[contains(@class,'cke_editable_themed cke_contents_ltr')]")
+  @FindBy(xpath = ".//div[contains(@class,'cke_editable_themed cke_contents_ltr')]")
   private WebElement signatureField;
 
-  @FindBy(xpath = ".//span [@class = 'ui-button-text']/..")
-  private WebElement buttonAddSignature;
+  @FindBy(xpath = ".//span[@class = 'ui-button-text']/..")
+  private WebElement addSignatureButton;
 
-  @FindBy(xpath = ".//a [@class = 'b-setup-title__link' and @href = '#inbox']")
-  private WebElement buttonToGmail;
+  @FindBy(xpath = ".//a[@class = 'b-setup-title__link' and @href = '#inbox']")
+  private WebElement toGmailButton;
 
   /**
    * В этом методе кликаем по кнопке "Настройки"
@@ -31,7 +31,7 @@ public class SettingMailBobPageObject extends Base {
 
   @Step("Кликаем по кнопке настройки")
   public void clickButtonSetting() {
-    click(buttonSetting);
+    click(settingButton);
     System.out.println("Кликнули по \"Настройки\"");
   }
 
@@ -41,7 +41,7 @@ public class SettingMailBobPageObject extends Base {
 
   @Step("Кликаем по копке \"Персональые данные, подпись, портрет\"")
   public void clickPersonalDataAndSignature() {
-    click(personalDataAndSignature);
+    click(personalDataAndSignatureLink);
     System.out.println("Кликнули по \"Личные данные, подпись, портрет\"");
   }
 
@@ -61,7 +61,7 @@ public class SettingMailBobPageObject extends Base {
 
   @Step("Кликаем по конпке \"Добавить подпись\"")
   public void clickButtonAddSignature() {
-    click(buttonAddSignature);
+    click(addSignatureButton);
     System.out.println("Добавили новую подпись");
   }
 
@@ -71,7 +71,7 @@ public class SettingMailBobPageObject extends Base {
 
   @Step("Переходим в почту, из меню настроек")
   public void clickButtonToGmail() {
-    click(buttonToGmail);
+    click(toGmailButton);
     System.out.println("Вернулись из настроек в почтовый ящик");
   }
 }

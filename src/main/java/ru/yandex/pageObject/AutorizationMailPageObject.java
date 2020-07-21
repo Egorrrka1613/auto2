@@ -11,17 +11,17 @@ public class AutorizationMailPageObject extends Base {
         super(driver);
     }
 
-    @FindBy(xpath = ".//*[contains(@class,'HeadBanner-Button-Enter with-shadow')]")
-    private WebElement comeGmail;
+    @FindBy(xpath = ".//a[contains(@class,'HeadBanner-Button-Enter')]")
+    private WebElement comeGmailButton;
 
-    @FindBy(xpath = ".//*[@name='login']")
-    private WebElement enterLogin;
+    @FindBy(xpath = ".//input[@name='login']")
+    private WebElement enterLoginField;
 
-    @FindBy(xpath = ".//*[contains(@class,'Button2_size_auth-l') and @type = 'submit']")
-    private WebElement enterAuthorizationValue;
+    @FindBy(xpath = ".//button[contains(@class,'Button2_size_auth-l')]")
+    private WebElement enterAuthorizationValueButton;
 
-    @FindBy(xpath = ".//*[@name='passwd']")
-    private WebElement enterPassword;
+    @FindBy(xpath = ".//input[@name='passwd']")
+    private WebElement enterPasswordField;
 
     /**
      * В этом методе водим логин
@@ -30,7 +30,7 @@ public class AutorizationMailPageObject extends Base {
 
     @Step("В этом методе водим логин")
     public void setEnterLogin(String text) {
-        setText(enterLogin, text);
+        setText(enterLoginField, text);
     }
 
     /**
@@ -39,7 +39,7 @@ public class AutorizationMailPageObject extends Base {
 
     @Step("Кликаем по кнопке \"Войти\" указывая наличие зарегестрированного почтового ящика.")
     public void clickComeGmail() {
-        click(comeGmail);
+        click(comeGmailButton);
     }
 
     /**
@@ -48,7 +48,7 @@ public class AutorizationMailPageObject extends Base {
 
     @Step("Кликаем по \"Войти\" после ввода логина.")
     public void clickEnterLoginComplate() {
-        click(enterAuthorizationValue);
+        click(enterAuthorizationValueButton);
     }
 
     /**
@@ -56,9 +56,7 @@ public class AutorizationMailPageObject extends Base {
      */
 
     @Step("В этом методе вводим пароль.")
-    public void setEnterPassword(String text) {
-        setText(enterPassword, text);
-    }
+    public void setEnterPassword(String text) { setText(enterPasswordField, text); }
 
     /**
      * В этом методе кликаем "Войти" после ввода пароля.
@@ -66,7 +64,7 @@ public class AutorizationMailPageObject extends Base {
 
     @Step("Кликаем \"Войти\", после ввода пароля.")
     public void clickEnterPasswordComplate() {
-        click(enterAuthorizationValue);
+        click(enterAuthorizationValueButton);
     }
 
 }

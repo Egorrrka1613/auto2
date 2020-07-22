@@ -85,7 +85,7 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1Mail.clickReceiveLetter();
         test1Mail.compareLetterSubject(letterSubjectValue2);
         test1Mail.compareLetterText(textLetterChoiceValue2);
-        Assert.assertTrue(driver.findElement(By.xpath(".//div[@class = 'js-message-body-content mail-Message-Body-Content']/div[4]")).getText().contains(signatureGenerateValue1));
+        test1Mail.checkSignLetter(signatureGenerateValue1);
         test1Mail.clickInboxLetterButton();
         test1Mail.clickButtonChooseAllLetters();
         test1Mail.clickButtonDeleteLetter();

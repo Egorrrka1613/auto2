@@ -1,6 +1,7 @@
 package ru.yandex.pageObject;
 
 import io.qameta.allure.Step;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.Base;
@@ -12,19 +13,19 @@ public class MailBoxPageObject extends Base {
 
   public MailBoxPageObject (WebDriver driver) {super(driver);}
 
-  @FindBy(xpath = ".//a[@class = 'mail-ComposeButton js-main-action-compose']")
-  private WebElement writeLetter;
+  @FindBy(xpath = ".//a[contains(@title, 'Написать')]")
+  private WebElement writeLetterButton;
 
   @FindBy(xpath = ".//div[@class = 'ComposePopup-Content']")
-  private WebElement windowNewLetter;
+  private WebElement newLetterWindow;
 
-  @FindBy(xpath = ".//div[@class='MultipleAddressesDesktop ComposeRecipients-MultipleAddressField tst-field-to']//div[@class = 'composeYabbles']")
+  @FindBy(xpath = ".//div[contains(@class, 'tst-field-to')]//div[@class = 'composeYabbles']")
   private WebElement addresser;
 
   @FindBy(xpath = ".//input[@name = 'subject']")
   private WebElement letterSubject;
 
-  @FindBy(xpath = ".//input[@class = 'ComposeAttachFileButton-FileInput' and @type='file']")
+  @FindBy(xpath = ".//input[contains(@class, 'Button') and @type='file']")
   private WebElement uploadFile;
 
   @FindBy(xpath = ".//button[@class = 'control button2 button2_view_default button2_tone_default button2_size_l button2_theme_action button2_pin_circle-circle ComposeControlPanelButton-Button ComposeControlPanelButton-Button_action']")
@@ -80,7 +81,7 @@ public class MailBoxPageObject extends Base {
    */
 
   @Step("Нажимаем \"Написать\" в ЛК почты")
-  public void clickWriteLetter() { click(writeLetter); }
+  public void clickWriteLetter() { click(writeLetterButton); }
 
   /**
    * В этом методе проверяем наличие формы создания письма.
@@ -90,7 +91,7 @@ public class MailBoxPageObject extends Base {
   public void checkWindowNewLetter() {
     //assertTrue(getDriver().findElement(By.xpath(xpath)).getText().contains("Новое письмо")); --- недописаная попытка проверки окошка новго пиьсьма с использованием JUnit
     try {
-      getText(windowNewLetter);
+      getText(newLetterWindow);
       System.out.println("Форма найдена");
     } catch (NoSuchElementException e) {
       System.out.println("Форма не найдена");
@@ -234,9 +235,8 @@ public class MailBoxPageObject extends Base {
    */
 
   @Step("Скачиваем аттач письма, проверяем что он сохранился в директорию загрузки")
-  public void dowonladCheckAttach() throws InterruptedException {
+  public void dowonladCheckAttach() {
     click(buttonDowonladAttach);
-    Thread.sleep(3000);
     System.out.println("Файл скачан");
     /*
     Условие для проверки наличия файла в директории загрузки
@@ -341,5 +341,15 @@ public class MailBoxPageObject extends Base {
     }
     else
       System.out.println("Письма удалены");
+  }
+
+  /**
+   * В этом методе проверяем соответствие подписи в письме
+   * @param sign
+   */
+
+  @Step("Проверяем соответствие подписи в письме")
+  public void checkSignLetter(String sign) {
+    Assert.assertTrue(getDriver().findElement(By.xpath(".//div[@class = 'js-message-body-content mail-Message-Body-Content']/div[4]")).getText().contains(sign));
   }
 }

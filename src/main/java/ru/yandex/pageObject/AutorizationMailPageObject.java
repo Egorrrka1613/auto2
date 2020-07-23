@@ -17,7 +17,7 @@ public class AutorizationMailPageObject extends Base {
     @FindBy(xpath = ".//input[@name='login']")
     private WebElement enterLoginField;
 
-    @FindBy(xpath = ".//button[contains(@class,'Button2_size_auth-l')]")
+    @FindBy(xpath = ".//button[contains(@class,'Button2_size_auth-l') and @type = 'submit']")
     private WebElement enterAuthorizationValueButton;
 
     @FindBy(xpath = ".//input[@name='passwd']")

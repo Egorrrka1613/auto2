@@ -20,57 +20,54 @@ public class MailBoxPageObject extends Base {
   private WebElement newLetterWindow;
 
   @FindBy(xpath = ".//div[contains(@class, 'tst-field-to')]//div[@class = 'composeYabbles']")
-  private WebElement addresser;
+  private WebElement addresserField;
 
   @FindBy(xpath = ".//input[@name = 'subject']")
-  private WebElement letterSubject;
+  private WebElement letterSubjectField;
 
   @FindBy(xpath = ".//input[contains(@class, 'Button') and @type='file']")
-  private WebElement uploadFile;
+  private WebElement uploadFileButton;
 
-  @FindBy(xpath = ".//button[@class = 'control button2 button2_view_default button2_tone_default button2_size_l button2_theme_action button2_pin_circle-circle ComposeControlPanelButton-Button ComposeControlPanelButton-Button_action']")
-  private WebElement sendLetter;
+  @FindBy(xpath = ".//button[contains(@class, 'Button_action')]")
+  private WebElement sendLetterButton;
 
   @FindBy(xpath = ".//div[@role='textbox']")
-  private WebElement textLetter;
+  private WebElement textLetterField;
 
-  @FindBy(xpath = ".//a[@class = 'control link link_theme_normal ComposeDoneScreen-Link' and @href = '#inbox']")
-  private WebElement returnToInBox;
+  @FindBy(xpath = ".//a[contains(@class, 'ComposeDoneScreen-Link') and @href = '#inbox']")
+  private WebElement returnToBoxMailButton;
 
-  @FindBy(xpath = ".//span [@class = 'mail-ComposeButton-Refresh js-main-action-refresh ns-action']")
-  private WebElement refreshMail;
+  @FindBy(xpath = ".//span[contains(@class, 'Refresh')]")
+  private WebElement refreshMailButton;
 
-  @FindBy(xpath = ".//div[@class = 'ns-view-container-desc mail-MessagesList js-messages-list']/div[1]/div/div[2]/div[1]/div[1]/div")
-  private WebElement receiveLetter;
+  @FindBy(xpath = ".//div[contains(@class, 'mail-MessagesList')]/div[1]/div/div[2]/div[1]/div[1]/div")
+  private WebElement receiveLetterElement;
 
-  @FindBy(xpath = ".//span[@class = 'mail-Message-Toolbar-Subject-Wrapper']")
-  private WebElement letterSubjectValueInBox;
+  @FindBy(xpath = ".//span[contains(@class, 'Subject')]")
+  private WebElement letterSubjectValueInBoxField;
 
-  @FindBy(xpath = ".//div[@class = 'js-message-body-content mail-Message-Body-Content']/div[1]")
-  private WebElement textLetterInBox;
+  @FindBy(xpath = ".//div[contains(@class, 'Message-Body-Content')]/div[1]")
+  private WebElement textLetterInBoxField;
 
-  @FindBy(xpath = ".//a[@class = 'mail-File-Actions-Item js-skip-click-message-item js-attachment-actions-item js-download-attachment mail-File-Actions-Item_secondary']")
-  private WebElement buttonDowonladAttach;
+  @FindBy(xpath = ".//a[contains(@class, 'download-attachment mail-File')]")
+  private WebElement dowonladAttachButton;
 
-  @FindBy(xpath = ".//div[@class = 'ComposeReact-SignatureContainer']")
-  private WebElement signList;
+  @FindBy(xpath = ".//div[contains(@class, 'SignatureContainer')]")
+  private WebElement signListFiled;
 
-  @FindBy(xpath = ".//div[@class = 'ComposeReact-SignatureMenuAnchor']")
-  private WebElement signListOpen;
+  @FindBy(xpath = ".//div[contains(@class, 'SignatureMenu')]")
+  private WebElement signListButton;
 
-  @FindBy(xpath = ".//span[@class = 'mail-NestedList-Item-Name' and contains(text(), 'Входящие')]")
+  @FindBy(xpath = ".//span[contains(@class, 'Item-Name') and contains(text(), 'Входящие')]")
   private WebElement inboxLetterButton;
 
-  @FindBy(xpath = ".//div[@class = 'ns-view-container-desc']/div[1]//span[@class = 'checkbox_view']")
-  private WebElement buttonChooseAllLetters;
+  @FindBy(xpath = ".//div[contains(@class, 'Item_main-select-all')]//span[@class = 'checkbox_view']")
+  private WebElement chooseAllLettersButton;
 
-  @FindBy(xpath = ".//span[@class = 'mail-Toolbar-Item-Text js-toolbar-item-title js-toolbar-item-title-delete']")
+  @FindBy(xpath = ".//span[contains(@class, 'title-delete')]")
   private WebElement buttonDeleteLetter;
 
-  @FindBy(xpath = ".//span[@class = 'button2__text' and text() = 'Удалить']/..")
-  private WebElement confirmDelete;
-
-  @FindBy(xpath = ".//div[@class = 'ns-view-container-desc mail-MessagesList js-messages-list']/div[1]")
+  @FindBy(xpath = ".//div[contains(@class, 'js-messages-list')]/div[1]")
   private WebElement existAnyLetter;
 
   @FindBy(xpath = ".//div[text() = 'В папке «Входящие» нет писем.']")
@@ -104,7 +101,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Указываем поле для ввода адреса письма")
   public void setAddresser(String text) {
-    setText(addresser, text);
+    setText(addresserField, text);
   }
 
   /**
@@ -113,7 +110,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Указываем тему письма")
   public void setLetterSubject(String text) {
-    setText(letterSubject, text);
+    setText(letterSubjectField, text);
   }
 
   /**
@@ -122,7 +119,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Пишем текст письма")
   public void writeTextLetter(String text) {
-    setText(textLetter, text);
+    setText(textLetterField, text);
   }
 
   /**
@@ -145,7 +142,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Загружаем файл к письму")
   public void setUploadFile() {
-    setTextForAttach(uploadFile, "/src/main/resources/file.txt");
+    setTextForAttach(uploadFileButton, "/src/main/resources/file.txt");
   }
 
   /**
@@ -154,7 +151,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Нажимаем \"Отправить\"")
   public void clickSendLetter() {
-    click(sendLetter);
+    click(sendLetterButton);
     System.out.println("Отправили письмо");
   }
 
@@ -164,7 +161,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Нажимаем \"Вернуться во входящие\"")
   public void clickReturnToInBox() {
-    click(returnToInBox);
+    click(returnToBoxMailButton);
     System.out.println("Вернулись во входящие");
   }
 
@@ -174,7 +171,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Нажимаем \"Проверить, есть ли новые письма \"")
   public void clickRefreshGmail() {
-    click(refreshMail);
+    click(refreshMailButton);
     System.out.println("Почтовый ящик обновлен");
   }
 
@@ -184,9 +181,9 @@ public class MailBoxPageObject extends Base {
 
   @Step("Проверяем наличие письма, с указанной темой")
   public void findLetterSubject(String subjectLetter) {
-    String xpath = ".//span[@title = '" + subjectLetter + "']/..";
+    String xpathLetterSubjectElement = ".//span[@title = '" + subjectLetter + "']";
     try {
-      click(xpath);
+      click(xpathLetterSubjectElement);
       System.out.println("Письмо с указанной темой присутствует");
       //.//span[@title = '163fa291-0e2a-4749-9494-29f0ce7b70bb'] --- xpath для проверки темы
     } catch ( TimeoutException u) {
@@ -200,7 +197,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Открываем принятое письмо")
   public void clickReceiveLetter() {
-    click(receiveLetter);
+    click(receiveLetterElement);
     System.out.println("Переход во входящее письмо выполнен");
   }
 
@@ -210,7 +207,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Сравнение темм писем")
   public void compareLetterSubject(String text) {
-    String letterSubjectValueInBoxStr = getText(letterSubjectValueInBox);
+    String letterSubjectValueInBoxStr = getText(letterSubjectValueInBoxField);
     if (text.equals(letterSubjectValueInBoxStr)) {
       System.out.println("Темы сравниваемых писем равны");
     }
@@ -223,7 +220,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Сравнение текста писем")
   public void compareLetterText(String text) {
-    String textLetterInBoxStr = getText(textLetterInBox);
+    String textLetterInBoxStr = getText(textLetterInBoxField);
     if (text.equals(textLetterInBoxStr))
       System.out.println("Тексты сравниваемых писем равны");
     else
@@ -236,7 +233,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Скачиваем аттач письма, проверяем что он сохранился в директорию загрузки")
   public void dowonladCheckAttach() {
-    click(buttonDowonladAttach);
+    click(dowonladAttachButton);
     System.out.println("Файл скачан");
     /*
     Условие для проверки наличия файла в директории загрузки
@@ -275,8 +272,8 @@ public class MailBoxPageObject extends Base {
 
   @Step("Открываем меню выбора подписи")
   public void clickSignList() {
-    click(signList);
-    click(signListOpen);
+    click(signListFiled);
+    click(signListButton);
   }
 
   /**
@@ -307,7 +304,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Выделяем все письма в почте")
   public void clickButtonChooseAllLetters() {
-    click(buttonChooseAllLetters);
+    click(chooseAllLettersButton);
   }
 
   /**
@@ -317,15 +314,6 @@ public class MailBoxPageObject extends Base {
   @Step("Удаляем все письма")
   public void clickButtonDeleteLetter() {
     click(buttonDeleteLetter);
-  }
-
-  /**
-   * В этом методе подтверждаем удаление всех отмеченных писем
-   */
-
-  @Step("Подтверждаем удаление")
-  public void clickConfirmDelete() {
-    click(confirmDelete);
   }
 
   /**

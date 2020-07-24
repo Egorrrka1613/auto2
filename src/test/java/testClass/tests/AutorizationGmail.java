@@ -32,6 +32,7 @@ public class AutorizationGmail extends ChromeBaseTest {
         AutorizationMailPageObject test1Autorization = new AutorizationMailPageObject(getDriver());
         MailBoxPageObject test1Mail = new MailBoxPageObject(getDriver());
         SettingMailBobPageObject test1Settin = new SettingMailBobPageObject(getDriver());
+
         test1Autorization.clickComeGmail();
         test1Autorization.setEnterLogin("testerawto");
         test1Autorization.clickEnterLoginComplate();
@@ -46,6 +47,7 @@ public class AutorizationGmail extends ChromeBaseTest {
         String textLetterChoiceValue1 = textLetterChoice(); // Переменная с текстом первого письма
         test1Mail.writeTextLetter(textLetterChoiceValue1);
         test1Mail.fileNewCreate();
+
         test1Mail.setUploadFile();
         Thread.sleep(3000); //Ожидание для загрузки файла
         test1Mail.clickSendLetter();
@@ -90,5 +92,7 @@ public class AutorizationGmail extends ChromeBaseTest {
         test1Mail.clickButtonChooseAllLetters();
         test1Mail.clickButtonDeleteLetter();
         test1Mail.checkExistAnyLetter();
+
+
     }
 }

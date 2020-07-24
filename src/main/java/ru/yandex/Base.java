@@ -90,7 +90,8 @@ public class Base {
 
     public void setTextForAttach(WebElement element, String text) {
         waitVisibilityElement(element);
-        text = "." + text;
+        System.out.println("Дошли до загрузки файла");
+        //text = "." + text;
         //element.sendKeys(new File("./picturesfolder/pic1.jpg").getAbsolutePath());
         element.sendKeys(new File(text).getAbsolutePath());
     }

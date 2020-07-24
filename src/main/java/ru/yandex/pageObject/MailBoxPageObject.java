@@ -73,7 +73,7 @@ public class MailBoxPageObject extends Base {
   @FindBy(xpath = ".//div[text() = 'В папке «Входящие» нет писем.']")
   private WebElement checkNoLetter;
 
-  String textttt = "file.txt";
+  String fileName = "file.txt";
 
   /**
    * В этом методе нажимаем "Написать письмо".
@@ -131,7 +131,7 @@ public class MailBoxPageObject extends Base {
   @Step("Создаем файл для прикрепления к письму")
   public void fileNewCreate() {
     try {
-      new File(textttt).createNewFile();
+      new File(fileName).createNewFile();
       //SaveInHTML sih = new SaveInHTML(System.getProperty("user.dir")+"/Hello.txt");
       System.out.println("Создан файл аттача");
     } catch (IOException ex) {
@@ -145,7 +145,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Загружаем файл к письму")
   public void setUploadFile() {
-    setTextForAttach(uploadFileButton, textttt);
+    setTextForAttach(uploadFileButton, fileName);
   }
 
   /**
@@ -255,7 +255,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Удаляем скачанный аттач файла")
   public void deleteDowonladAttach() {
-    new File(textttt).delete();
+    new File(fileName).delete();
   }
 
   /**
@@ -264,7 +264,7 @@ public class MailBoxPageObject extends Base {
 
   @Step("Удаляем созданный аттач файла")
   public void deleteCreateAttach() {
-    new File(textttt).delete();
+    new File(fileName).delete();
     System.out.println("Удалил файл атача");
   }
 

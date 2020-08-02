@@ -47,7 +47,6 @@ public class AutorizationGmail extends ChromeBaseTest {
         String textLetterChoiceValue1 = textLetterChoice(); // Переменная с текстом первого письма
         test1Mail.writeTextLetter(textLetterChoiceValue1);
         test1Mail.fileNewCreate();
-
         test1Mail.setUploadFile();
         Thread.sleep(3000); //Ожидание для загрузки файла
         test1Mail.clickSendLetter();

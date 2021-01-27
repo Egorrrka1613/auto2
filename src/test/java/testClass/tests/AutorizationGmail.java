@@ -19,11 +19,11 @@ import static ru.yandex.RandomStringGenerator.*;
 public class AutorizationGmail extends ChromeBaseTest {
 
     @Test
-    @Epic("Банк")
+    @Epic("Тест яндекс-почты")
     @Feature("РБГ")
-    @Story("Создание, просмотр и удаление банковской гарантии")
-    @DisplayName("Создание, просмотр и удаление банковской гарантии")
-    @Description("Создание, просмотр и удаление банковской гарантии")
+    @Story("Создание, отправка, удаление, переотправка с прикреплением файла, проверка получения")
+    @DisplayName("Создание, отправка, удаление, переотправка с прикреплением файла, проверка получения")
+    @Description("Создание, отправка, удаление, переотправка с прикреплением файла, проверка получения")
 
     public void startTest() throws InterruptedException {
         toURL("https://mail.yandex.ru/?noretpath=1");
